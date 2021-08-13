@@ -41,3 +41,7 @@ This page will display a singular post containing an image, description, likes, 
 * `POST /posts/:id/likes`
 * `POST /posts/:id/comments`
 * `DELETE /posts/:id/likes`
+
+## `users/:id`
+
+This page will display a users name, their profile picture, a biography, a follow button, follower/following counts, and all posts made by that user. If the user is the owner of the profile page, they should see an edit button to update the profile and/or their biography
