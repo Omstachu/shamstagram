@@ -33,9 +33,15 @@ def image_upload():
     new_image = Image(url=url, alt_text=alt_text)
 
     db.session.add(new_image)
+    db.session.flush()
+    db.session.refresh(new_image)
     db.session.commit()
 
-    return {"url": url}
+    new_image = {"id": new_image.id,
+                 "alt_text": new_image.alt_text, "url": new_image.url}
+    # print(new_image)
+
+    return new_image
 
     # image = form
 
@@ -45,6 +51,8 @@ def image_upload():
 @image_routes.route('/', methods=["GET"])
 @login_required
 def show_image():
-    image = Image.query.all()[0].url
-    # print("Image--------------------------------", image[0].url)
-    return {"url": image}
+    # image = Image.query.all()[0].url
+    images = Image.query.all()
+    # print("Image--------------------------------", images)
+    # return {"images": {image.id: (image.url, image.alt_text) for image in images}}
+    return {"images": {image.id: {"url": image.url, "alt_text": image.alt_text} for image in images}}
