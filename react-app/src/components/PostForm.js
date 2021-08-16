@@ -5,7 +5,7 @@ import { uploadImage } from '../store/image';
 
 const PostForm = () => {
   const [errors, setErrors] = useState([]);
-  const [imageUpload, setImageUpload] = useState();
+  const [imageUpload, setImageUpload] = useState("");
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -23,10 +23,6 @@ const PostForm = () => {
     e.preventDefault();
     setImageUpload(e.target.files[0]);
   };
-
-  if (user) {
-    return <Redirect to='/' />;
-  }
 
   return (
     <form onSubmit={onUpload}>

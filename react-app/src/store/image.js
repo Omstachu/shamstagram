@@ -10,7 +10,7 @@ const initialState = { image: null };
 
 
 export const uploadImage = (picture) => async (dispatch) => {
-  const response = await fetch('/api/auth/images', {
+  const response = await fetch('/api/images', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
