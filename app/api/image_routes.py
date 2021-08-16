@@ -14,7 +14,7 @@ def image_upload():
         return {"errors": "image required"}, 400
 
     image = request.files["image"]
-
+    print(request.files)
     if not allowed_file(image.filename):
         return {"errors": "file type not permitted"}, 400
     alt_text = image.filename.rsplit('.', 1)[0]

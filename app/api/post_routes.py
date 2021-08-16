@@ -11,12 +11,15 @@ post_routes = Blueprint('posts', __name__)
 def new_post():
     form = PostForm()
     # print(form)
-    post = Post({
-        "imageId": request.imageData.id,
-        "userId": current_user.id,
-        "description": form.description.data
-    }
-    )
+    # print("request body --------", request.body)
+    # print("form --------", form)
+    # print("form data --------", form.data)
+    # print("request values --------", request.values)
+    # print("request get_data --------", request.get_data())
+    # print("request get_data --------", dir(request.get_data()))
+    data = request.get_json()
+    print("data >>>>>>>>>>>>>>>>>>>>>>>", data)
+    post = Post(request.body)
     db.session.add(post)
     db.session.commit()
 

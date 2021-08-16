@@ -12,6 +12,8 @@ const PostForm = () => {
   const [description, setDescription] = useState('');
   const [imageLoading, setImageLoading] = useState(false);
 
+  const user = useSelector(state => state.session.user);
+
   const handleSubmit = async (e) => {
       e.preventDefault();
       const formData = new FormData();
@@ -22,19 +24,26 @@ const PostForm = () => {
       // some sort of loading message is a good idea
       setImageLoading(true);
 
+      console.log()
       const res = await fetch('/api/images/', {
           method: "POST",
           body: formData,
       });
       if (res.ok) {
           const imageData = await res.json();
+          console.log("image data ----", imageData)
           setImageLoading(false);
+          const new_post = {
+              imageId: imageData.id,
+              userId: user.id,
+              description
+          }
 
-          formData.append("imageData", imageData)
-          console.log(formData)
+          console.log("new_post --------", new_post)
+
           const postRes = await fetch('/api/posts/', {
               method: "POST",
-              body: formData
+              body: new_post
           })
 
           if(postRes.ok) {
