@@ -5,6 +5,7 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import PostForm from './components/PostForm'
 import NavBar from './components/NavBar';
+import Image from './components/Image'
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/post' exact={true} >
           <PostForm/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/images' exact={true} >
+          <Image/>
         </ProtectedRoute>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

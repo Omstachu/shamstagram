@@ -40,3 +40,11 @@ def image_upload():
     # image = form
 
     # return {'users': [user.to_dict() for user in users]}
+
+
+@image_routes.route('/', methods=["GET"])
+@login_required
+def show_image():
+    image = Image.query.all()[0].url
+    # print("Image--------------------------------", image[0].url)
+    return {"url": image}
