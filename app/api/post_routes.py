@@ -56,8 +56,11 @@ def get_post(pageId):
     posts = db.session.query(Post).join(User, Image).all()
 
     postUrl = posts[0].image.url
+
+    postDict = {post.id:post.to_dict() for post in posts}
+
     # postDict = {post:posts[post.id] for post in posts}
     # use dict comprehension to create a dictionary with to_dict of each post
 
-    # print("post is here -----------", postDict)
-    return {"postUrl": postUrl}
+    print("post is here -----------", postDict)
+    return postDict

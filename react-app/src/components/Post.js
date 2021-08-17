@@ -5,8 +5,8 @@ import { createPost, getOnePost } from "../store/post";
 
 function Post() {
   const [description, setDescription] = useState("");
-  const [imageId, setImageId] = useState("");
-  const [userId, setUserId] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [username, setUsername] = useState("");
   const { postId } = useParams();
 
   const dispatch = useDispatch();
@@ -18,22 +18,21 @@ function Post() {
     console.log("INSIDE USE EFFECT ---------");
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   setDescription(post.description);
-  //   setImageId(post.imageId);
-  //   setUserId(post.userId);
-  // });
-
   const post = useSelector((state) => state.post);
-  console.log("THIS IS THE POST ----------", post);
+  console.log("THIS IS THE POST ----------", post[1]?.image_url);
+
+  useEffect(() => {
+    setDescription(post[postId]?.description);
+    setImageUrl(post[postId]?.image_url);
+    setUsername(post[postId]?.user_name);
+  });
 
   return (
     <>
       <h1>Post</h1>
+      <div>{username}</div>
+      <img src={imageUrl}></img>
       <div>{description}</div>
-      <img src={post.postUrl}></img>
-      <div>{imageId}</div>
-      <div>{userId}</div>
     </>
   );
 }

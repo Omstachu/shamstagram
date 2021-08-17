@@ -22,5 +22,8 @@ class Post(db.Model):
             "id": self.id,
             "imageId": self.imageId,
             "userId": self.userId,
-            "description" : self.description
+            "description" : self.description,
+            "image_url" : self.image.url,
+            "image_alt_text" : self.image.alt_text,
+            "user_name" : self.user.username
         }
