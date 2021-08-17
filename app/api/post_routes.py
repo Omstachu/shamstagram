@@ -49,3 +49,17 @@ def delete_post(id):
         return {'Success': 'Success!'}
     return {'error':'You are not the owner of this.'}
 
+
+@post_routes.route('/:id/edit', methods=["POST"])
+@login_required
+def edit_post(id):
+    # post form should be modified to editForm
+    form = PostForm()
+    id = int(id)
+    post = Post.query.get(id)
+    if post.userId == current_user.id:
+        post.description = form.data['description']
+        db.session.commit()
+        return {'Success': 'Success!'}
+    return {'error': 'You are not the owner of this.'}
+
