@@ -37,3 +37,15 @@ def new_post():
     db.session.commit()
 
     return post_data
+
+@post_routes.route('/:id/delete', methods=["POST"])
+@login_required
+def delete_post(id):
+    id = int(id)
+    post = Post.query.get(id)
+    if post.userId == current_user.id:
+        db.session.delete(post)
+        db.session.commit()
+        return {'Success': 'Success!'}
+    return {'error':'You are not the owner of this.'}
+
