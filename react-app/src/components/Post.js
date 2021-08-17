@@ -18,10 +18,24 @@ function Post() {
     console.log("INSIDE USE EFFECT ---------");
   }, [dispatch]);
 
-  const post = useSelector((state) => state);
+  // useEffect(() => {
+  //   setDescription(post.description);
+  //   setImageId(post.imageId);
+  //   setUserId(post.userId);
+  // });
+
+  const post = useSelector((state) => state.post);
   console.log("THIS IS THE POST ----------", post);
 
-  return <h1>Post</h1>;
+  return (
+    <>
+      <h1>Post</h1>
+      <div>{description}</div>
+      <img src={post.postUrl}></img>
+      <div>{imageId}</div>
+      <div>{userId}</div>
+    </>
+  );
 }
 
 export default Post;

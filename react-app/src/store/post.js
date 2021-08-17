@@ -8,7 +8,7 @@ const addPost = (post) => ({
 
 const getPost = (post) => ({
   type: GET_POST,
-  payload: post,
+  post,
 });
 
 export const getOnePost = (postId) => async (dispatch) => {
@@ -59,7 +59,7 @@ export default function reducer(state = initialState, action) {
     case ADD_POST:
       return { posts: action.payload };
     case GET_POST:
-      return { ...state, post: action.payload };
+      return action.post; //may need to add ...state
     default:
       return state;
   }

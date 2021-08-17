@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 import json
 from flask_login import login_required, current_user
-from app.models import User, Post, db
+from app.models import User, Post, Image, db
 from ..forms import PostForm
 
 post_routes = Blueprint('posts', __name__)
@@ -49,6 +49,15 @@ def new_post():
 @post_routes.route('/<int:pageId>')
 @login_required
 def get_post(pageId):
-    post = Post.query.get(pageId)
-    print("post is here -----------",post)
-    return {"post": post.to_dict()}
+    # post = Post.query.get(pageId)
+    # print("post is here -----------",post)
+    # return post.to_dict()
+
+    posts = db.session.query(Post).join(User, Image).all()
+
+    postUrl = posts[0].image.url
+    # postDict = {post:posts[post.id] for post in posts}
+    # use dict comprehension to create a dictionary with to_dict of each post
+
+    # print("post is here -----------", postDict)
+    return {"postUrl": postUrl}
