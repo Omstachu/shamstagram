@@ -56,3 +56,5 @@ def show_image():
     # print("Image--------------------------------", images)
     # return {"images": {image.id: (image.url, image.alt_text) for image in images}}
     return {"images": {image.id: {"url": image.url, "alt_text": image.alt_text} for image in images}}
+
+# Test this branch
