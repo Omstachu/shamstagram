@@ -34,6 +34,21 @@ def new_post():
     )
     # print("POST DATA ----------", post)
     db.session.add(post)
+    db.session.flush()
+    db.session.refresh(post)
     db.session.commit()
 
-    return post_data
+    post = {"id": post.id,
+        "imageId": post.imageId,
+        "userId": post.userId,
+        "description": post.description
+    }
+    return post
+
+
+@post_routes.route('/<int:pageId>')
+@login_required
+def get_post(pageId):
+    post = Post.query.get(pageId)
+    print("post is here -----------",post)
+    return {"post": post.to_dict()}

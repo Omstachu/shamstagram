@@ -10,3 +10,11 @@ class Post(db.Model):
     imageId = db.Column(db.Integer, nullable=False)
     userId = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(140))
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "imageId": self.imageId,
+            "userId": self.userId,
+            "description" : self.description
+        }
