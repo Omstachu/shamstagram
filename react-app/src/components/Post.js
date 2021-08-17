@@ -16,7 +16,7 @@ function Post() {
   useEffect(() => {
     dispatch(getOnePost(postId));
     console.log("INSIDE USE EFFECT ---------");
-  });
+  }, [dispatch]);
 
   const post = useSelector((state) => state);
   console.log("THIS IS THE POST ----------", post);

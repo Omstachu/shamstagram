@@ -13,7 +13,7 @@ const getPost = (post) => ({
 
 export const getOnePost = (postId) => async (dispatch) => {
   const response = await fetch(`/api/posts/${postId}`);
-  console.log("INSIDE THE THUNK ------------", await response.json());
+  console.log("INSIDE THE THUNK ------------");
 
   if (response.ok) {
     const detail = await response.json();
