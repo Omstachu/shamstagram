@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 function Image() {
     const [images, setImages] = useState('');
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
 
 

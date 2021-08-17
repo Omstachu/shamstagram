@@ -16,7 +16,7 @@ const PostForm = () => {
 
   const handleSubmit = async (e) => {
       e.preventDefault();
-      const formData = new FormData();
+      let formData = new FormData();
       formData.append("image", image);
     //   formData.append("post", post)
 
@@ -33,17 +33,25 @@ const PostForm = () => {
           const imageData = await res.json();
           console.log("image data ----", imageData)
           setImageLoading(false);
-          const new_post = {
+          let new_post = {
               imageId: imageData.id,
               userId: user.id,
               description
           }
 
-          console.log("new_post --------", new_post)
+          new_post = JSON.stringify(new_post)
+
+        //   console.log("new_post --------", new_post)
+        //   formData = new FormData()
+
+          formData.append("new_post", new_post)
+        //   formData.append("imageId", imageData.id)
+        //   formData.append("userId", user.id)
+        //   formData.append("description", description)
 
           const postRes = await fetch('/api/posts/', {
               method: "POST",
-              body: new_post
+              body: formData
           })
 
           if(postRes.ok) {
