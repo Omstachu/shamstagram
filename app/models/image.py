@@ -7,5 +7,5 @@ class Image(db.Model):
     __tablename__ = "images"
 
     id = db.Column(db.Integer, primary_key=True)
-    url = db.Column(db.String(79), nullable=False)
+    url = db.Column(db.String(100), nullable=False)
     alt_text = db.Column(db.String(255), nullable=False)
