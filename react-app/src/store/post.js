@@ -91,14 +91,21 @@ export const getOnePost = (postId) => async (dispatch) => {
 }
 
 export const editPost = (post) => async (dispatch) => {
-  const response = await fetch(`/api/posts/${post.id}/edit`, {
+  let postId = post.id
+  console.log("post", post);
+  let formData = new FormData();
+  //# post = JSON.stringify(post);
+  formData.append("postId", post.id);
+  formData.append("description", post.description);
+  formData.append("imageId", post.imageId);
+  formData.append("userId", post.userId);
+  console.log("formData", formData);
+  const response = await fetch(`/api/posts/${postId}/edit`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      post
-    })
+    // headers: {
+    //   'Content-Type': 'application/json'
+    // },
+    body:formData
   })
 
   if (response.ok) {

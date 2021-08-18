@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { erasePost } from './store/post';
 
 const PostDeleteButton = () => {
     const dispatch = useDispatch()
-    //function handleDelete()
+    function handleDelete()
     return (
         <div>
             {/* <button onSubmit={handleDelete()}>'Delete'</button> */}
         </div>
     )
 }
-
+rac
 export default PostDeleteButton
