@@ -1,0 +1,14 @@
+.all-post-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: -50%;
+  float: left;
+  margin-bottom: 20%;
+}
+
+.all-post-container__container {
+  position: relative;
+  left: 50%;
+  float: left;
+}

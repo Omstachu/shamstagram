@@ -31,6 +31,14 @@ def new_post():
             }
     return post
 
+@post_routes.route('/')
+@login_required
+def get_all_posts():
+    posts = db.session.query(Post).join(User, Image).all()
+
+    postDict = {post.id: post.to_dict() for post in posts}
+
+    return postDict
 
 @post_routes.route('/<int:pageId>')
 @login_required
