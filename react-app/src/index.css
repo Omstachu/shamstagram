@@ -1,1 +1,33 @@
-/* TODO Add site wide styles */
+    /* TODO Add site wide styles */
+    
+    body {
+        background-color: #F0D3CD;
+    }
+    
+    nav ul {
+        color: #73383A;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 200px;
+        list-style-type: none;
+        background-color: #C24150;
+        color: white;
+        border-radius: 20px;
+    }
+    
+    nav ul a:visited {
+        color: #F0D3CD;
+    }
+    
+    .logout-navbar {
+        border-radius: 20px;
+    }
+    
+    .navbar-logo {
+        display: flex;
+        position: relative;
+        margin: 10px;
+        height: 50%;
+        width: 20%;
+    }

@@ -1,14 +1,14 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import LogoutButton from "./auth/LogoutButton";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import LogoutButton from '../auth/LogoutButton';
+import image from "./image.png"
+
 
 const NavBar = () => {
   return (
     <nav>
       <ul>
-        {/* <li>
-          <img src="image.png" />
-        </li> */}
+          <img src={image} className="navbar-logo" alt="logo" />
         <li>
           <NavLink to="/" exact={true} activeClassName="active">
             Home
@@ -45,7 +45,7 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <LogoutButton />
+          <LogoutButton className="logout-navbar" />
         </li>
       </ul>
     </nav>

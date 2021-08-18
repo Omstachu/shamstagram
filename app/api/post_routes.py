@@ -39,10 +39,10 @@ def new_post():
     db.session.commit()
 
     post = {"id": post.id,
-        "imageId": post.imageId,
-        "userId": post.userId,
-        "description": post.description
-    }
+            "imageId": post.imageId,
+            "userId": post.userId,
+            "description": post.description
+            }
     return post
 
 
@@ -55,12 +55,36 @@ def get_post(pageId):
 
     posts = db.session.query(Post).join(User, Image).all()
 
-    postUrl = posts[0].image.url
-
-    postDict = {post.id:post.to_dict() for post in posts}
+    postDict = {post.id: post.to_dict() for post in posts}
 
     # postDict = {post:posts[post.id] for post in posts}
     # use dict comprehension to create a dictionary with to_dict of each post
 
     print("post is here -----------", postDict)
     return postDict
+
+
+@post_routes.route('/:id/delete', methods=["POST"])
+@login_required
+def delete_post(id):
+    id = int(id)
+    post = Post.query.get(id)
+    if post.userId == current_user.id:
+        db.session.delete(post)
+        db.session.commit()
+        return {'Success': 'Success!'}
+    return {'error': 'You are not the owner of this.'}
+
+
+@post_routes.route('/:id/edit', methods=["POST"])
+@login_required
+def edit_post(id):
+    # post form should be modified to editForm
+    form = PostForm()
+    id = int(id)
+    post = Post.query.get(id)
+    if post.userId == current_user.id:
+        post.description = form.data['description']
+        db.session.commit()
+        return {'Success': 'Success!'}
+    return {'error': 'You are not the owner of this.'}
