@@ -10,6 +10,8 @@ function Post() {
   const [imageUrl, setImageUrl] = useState("");
   const [altText, setAltText] = useState("");
   const [username, setUsername] = useState("");
+  const [editDisplay, setEditDisplay] = useState(false);
+  const [deleteDisplay, setDeleteDisplay] = useState(false);
   const { postId } = useParams();
 
   const dispatch = useDispatch();
@@ -24,6 +26,8 @@ function Post() {
   const post = useSelector((state) => state.post);
   // console.log("THIS IS THE POST ----------", post[1]?.image_url);
 
+  console.log("description1111111", description)
+
   useEffect(() => {
     setDescription(post[postId]?.description);
     setImageUrl(post[postId]?.image_url);
@@ -31,13 +35,22 @@ function Post() {
     setAltText(post[postId]?.alt_text)
   }, [post, postId]);
 
+
+  let editContent = null
+
+
+    if (editDisplay){
+        editContent = (<PostEditForm post={post[postId]} hideForm={()=>setEditDisplay(false)} />)
+    }
+
   return (
     <>
       <h1>Post</h1>
       <div>{username}</div>
       <img src={imageUrl} alt={altText}></img>
-      <PostEditForm post={post[postId]} />
+      <button onClick={() => setEditDisplay(true)}>Edit </button>
       <div>{description}</div>
+      {editContent}
     </>
   );
 }

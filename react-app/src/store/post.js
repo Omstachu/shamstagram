@@ -23,14 +23,14 @@ const updatePost = (post) => ({
 })
 
 export const createPost = (post) => async (dispatch) => {
-    const response = await fetch('/api/posts', {
+    const formData = new FormData()
+    formData.append("new_post", post)
+    const response = await fetch('/api/posts/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            post
-        }),
+        body: formData
       })
 
     if (response.ok) {

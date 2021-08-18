@@ -4,7 +4,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { uploadImage } from '../store/image';
 import { editPost } from '../store/post'
 
-const PostEditForm = ({post}) => {
+const PostEditForm = ({post, hideForm}) => {
     const history = useHistory(); // so that we can redirect after the image upload is successful
     const dispatch = useDispatch()
     const [description, setDescription] = useState('');
@@ -23,7 +23,7 @@ const PostEditForm = ({post}) => {
         e.preventDefault();
         post.description = description
         await dispatch(editPost(post))
-
+        hideForm()
 }
 
     const updateDescription = (e) => {

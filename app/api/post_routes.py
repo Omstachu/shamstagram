@@ -11,28 +11,14 @@ post_routes = Blueprint('posts', __name__)
 @login_required
 def new_post():
     form = PostForm()
-    # print(form)
-    # print("request body --------", request.body)
-    # print("form --------", form)
-    # print("form data --------", form.data)
-    # print("request values --------", request.values)
-    # print("request get_data --------", request.get_data())
-    # print("request get_data --------", dir(request.get_data()))
-    # data = [file for file in request.files]
+
     post_data = json.loads(request.form["new_post"])
-    # print("request >>>>>>>>>>>>>>>>>>>>>>>", request.form["new_post"])
-    # print("request >>>>>>>>>>>>>>>>>>>>>>>", post_data)
-    # # print("request >>>>>>>>>>>>>>>>>>>>>>>",request.form["imageId"])
-    # # print("request >>>>>>>>>>>>>>>>>>>>>>>",request.form["userId"])
-    # # print("request >>>>>>>>>>>>>>>>>>>>>>>",request.form["description"])
-    # print("Data >>>>>>>>>>>>>>>>>>>>>>>", data)
 
     post = Post(
         imageId=post_data["imageId"],
         userId=post_data["userId"],
         description=post_data["description"]
     )
-    # print("POST DATA ----------", post)
     db.session.add(post)
     db.session.flush()
     db.session.refresh(post)
@@ -82,8 +68,9 @@ def edit_post(id):
     # post form should be modified to editForm
     form = PostForm()
     post = Post.query.get(id)
-    if post.userId == current_user.id:
-        post.description = form.data['description']
-        db.session.commit()
-        return {'Success': 'Success!'}
-    return {'error': 'You are not the owner of this.'}
+    post.description = form.description.data
+    print("POST BACKEND------------------------------------------", post)
+    print("FORM DATA DESCRIPTION------------------------------------", form.data)
+    db.session.add(post)
+    db.session.commit()
+    return {'Success': 'Success!'}

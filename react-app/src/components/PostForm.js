@@ -6,6 +6,7 @@ import { createPost, getOnePost } from "../store/post";
 
 const PostForm = () => {
   const history = useHistory(); // so that we can redirect after the image upload is successful
+  const dispatch = useDispatch()
   const [image, setImage] = useState(null);
   const [post, setPost] = useState({ id: 0 });
   const [imageDB, setImageDB] = useState(null);
@@ -30,43 +31,34 @@ const PostForm = () => {
     // some sort of loading message is a good idea
     setImageLoading(true);
 
-    console.log();
+
+
     const res = await fetch("/api/images/", {
       method: "POST",
       body: formData,
     });
+
+
+
     if (res.ok) {
       const imageData = await res.json();
-      console.log("image data ----", imageData);
-      setImageLoading(false);
       let new_post = {
         imageId: imageData.id,
         userId: user.id,
         description,
       };
+      // new_post = JSON.stringify(new_post);
 
-      new_post = JSON.stringify(new_post);
-
-      //   console.log("new_post --------", new_post)
-      //   formData = new FormData()
-
-      formData.append("new_post", new_post);
-      //   formData.append("imageId", imageData.id)
-      //   formData.append("userId", user.id)
-      //   formData.append("description", description)
-
-      const postRes = await fetch("/api/posts/", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (postRes.ok) {
-        const data = await postRes.json();
-        setPost(data);
-        console.log("post --------------", data);
-      }
-
-      //   history.push("/post");
+      await dispatch(createPost(new_post));
+      // formData.append("new_post", new_post);
+      // const postRes = await fetch("/api/posts/", {
+      //   method: "POST",
+      //   body: formData,
+      // });
+      // if (postRes.ok) {
+      //   const data = await postRes.json();
+      //   setPost(data);
+      // }
     } else {
       setImageLoading(false);
       // a real app would probably use more advanced
