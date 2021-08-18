@@ -44,14 +44,15 @@ function Post() {
     }
 
   return (
-    <>
-      <h1>Post</h1>
-      <div>{username}</div>
-      <img src={imageUrl} alt={altText}></img>
+    <div className="post-container">
+      <div className="post-username">{username}</div>
+      <div className="post-image__container">
+        <img className="post-image" src={imageUrl} alt={altText}></img>
+      </div>
       <button onClick={() => setEditDisplay(true)}>Edit </button>
-      <div>{description}</div>
+      <div className="post-description">{description}</div>
       {editContent}
-    </>
+    </div>
   );
 }
 

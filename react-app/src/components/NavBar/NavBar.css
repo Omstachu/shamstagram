@@ -1,3 +1,88 @@
-.active{
+nav ul {
+  position: absolute;
+  bottom: -1px;
+  left: 1px;
+  right: 1px;
+  color: #73383a;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  list-style-type: none;
+  background-color: #c24150;
+  color: white;
+  border-radius: 20px;
+  font-family: Jazz LET, Courier, monospace;
+}
 
+nav ul a:visited {
+  color: #f0d3cd;
+}
+
+.logout-navbar {
+  border-radius: 20px;
+}
+
+.navbar-image {
+  display: flex;
+  position: relative;
+  margin: 10px;
+  height: 100px;
+  width: auto;
+}
+
+.navbar-logo__innerText {
+  position: absolute;
+  top: 35px;
+  left: 72px;
+  color: black;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.navbar-modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  bottom: 115px;
+  right: 300px;
+  height: 100px;
+  width: 100px;
+  background-color: #73383a;
+}
+
+.navbar-modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(246, 152, 0, 0);
+}
+
+.navbar-modal__button {
+  background-color: #cc757c;
+}
+
+.navbar-profile {
+  background-color: #c24150;
+  padding: 0px 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  height: 40px;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.navbar-profile__image {
+  display: flex;
+  position: relative;
+  margin: 10px;
+  height: 80px;
+  width: auto;
+  object-fit: cover;
 }

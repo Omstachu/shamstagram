@@ -1,32 +1,34 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
-import image from "./image.png"
-
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import Modal from "react-modal";
+import LogoutButton from "../auth/LogoutButton";
+import image from "./image.png";
+import plus from "./plus.png";
+import profile from "./profile.png";
+import "./NavBar.css";
 
 const NavBar = () => {
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   return (
     <nav>
       <ul>
-          <img src={image} className="navbar-logo" alt="logo" />
         <li>
           <NavLink to="/" exact={true} activeClassName="active">
-            Home
+            <img src={image} className="navbar-image" alt="logo" />
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
-        </li>
+
         <li>
           <NavLink to="/post" exact={true} activeClassName="active">
-            Post
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
+            <img src={plus} className="navbar-image" alt="create" />
           </NavLink>
         </li>
         <li>
@@ -45,7 +47,27 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <LogoutButton className="logout-navbar" />
+          <button onClick={openModal} className="navbar-profile">
+            <img src={profile} className="navbar-profile__image" alt="create" />
+          </button>
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            className="navbar-modal"
+            overlayClassName="navbar-modal__overlay"
+          >
+            <LogoutButton className="navbar-modal__button" />
+            <button className="navbar-modal__button">
+              <NavLink to="/login" exact={true} activeClassName="active">
+                Login
+              </NavLink>
+            </button>
+            <button className="navbar-modal__button">
+              <NavLink to="/sign-up" exact={true} activeClassName="active">
+                Sign Up
+              </NavLink>
+            </button>
+          </Modal>
         </li>
       </ul>
     </nav>
