@@ -44,8 +44,10 @@ function Post() {
     }
 
   return (
-    <div className="post-container">
-      <div className="post-username">{username}</div>
+  <>
+    <div className="post-container__container">
+      <div className="post-container">
+       <div className="post-username">{username}</div>
       <div className="post-image__container">
         <img className="post-image" src={imageUrl} alt={altText}></img>
       </div>
@@ -53,7 +55,9 @@ function Post() {
       <div className="post-description">{description}</div>
       {editContent}
     </div>
-  );
+  </div>
+  </>
+  )
 }
 
 export default Post;

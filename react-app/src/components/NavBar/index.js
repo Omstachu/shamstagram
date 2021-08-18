@@ -20,18 +20,17 @@ const NavBar = () => {
   return (
     <nav>
       <ul>
-        <li>
+        <li className="link-container">
           <NavLink to="/" exact={true} activeClassName="active">
             <img src={image} className="navbar-image" alt="logo" />
           </NavLink>
         </li>
-
-        <li>
+        <li className="link-container">
           <NavLink to="/post" exact={true} activeClassName="active">
             <img src={plus} className="navbar-image" alt="create" />
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/users" exact={true} activeClassName="active">
             Users
           </NavLink>
@@ -45,8 +44,8 @@ const NavBar = () => {
           <NavLink to="/posts/1" exact={true} activeClassName="active">
             First Post
           </NavLink>
-        </li>
-        <li>
+        </li> */}
+        <li className="link-container__profile">
           <button onClick={openModal} className="navbar-profile">
             <img src={profile} className="navbar-profile__image" alt="create" />
           </button>
