@@ -51,12 +51,12 @@ export const createPost = (post) => async (dispatch) => {
 
 export const getOnePost = (postId) => async (dispatch) => {
   const response = await fetch(`/api/posts/${postId}`);
-  console.log("INSIDE THE THUNK ------------");
+  // console.log("INSIDE THE THUNK ------------");
 
   if (response.ok) {
     const detail = await response.json();
     dispatch(getPost(detail));
-    console.log("RESPONSE IS OK ------------");
+    // console.log("RESPONSE IS OK ------------");
     return "string of sometighjsfdgab";
   } else {
     console.log("NOT OK ----------");
@@ -88,8 +88,8 @@ export const editPost = (post) => async (dispatch) => {
   })
 
   if (response.ok) {
-    const data = await response.json();
-    dispatch(updatePost(data))
+    await response.json();
+    dispatch(updatePost(post))
     return null;
   } else if (response.status < 500) {
     const data = await response.json();
@@ -143,7 +143,9 @@ export default function reducer(state = initialState, action) {
       return state
     case UPDATE_POST:
       const newState = {...state}
-      newState.posts.id = action.payload
+      console.log("NEWSTATE", newState)
+      console.log("STATE", state)
+      newState[action.payload.id] = action.payload
       return newState
     default:
       return state;
