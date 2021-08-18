@@ -22,30 +22,44 @@ const updatePost = (post) => ({
   payload: post
 })
 
-export const createPost = (post) => async (dispatch) => {
-    const formData = new FormData()
-    formData.append("new_post", post)
-    const response = await fetch('/api/posts/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: formData
-      })
+export const createPost = (user, description, image) => async (dispatch) => {
+    let formData = new FormData();
+    let new_post = {};
+    formData.append("image", image);
+    const res = await fetch("/api/images/", {
+      method: "POST",
+      body: formData,
+    });
+    if (res.ok) {
+      const imageData = await res.json();
+      new_post = {
+        imageId: imageData.id,
+        userId: user.id,
+        description,
+      };
+    }
+    new_post = JSON.stringify(new_post);
+    formData.append("new_post", new_post);
+    const postRes = await fetch("/api/posts/", {
+      method: "POST",
+      body: formData,
+    });
 
-    if (response.ok) {
-      const data = await response.json();
-      dispatch(updatePost(data))
+    if (postRes.ok) {
+      const data = await postRes.json();
+      dispatch(addPost(data))
       return null;
-    } else if (response.status < 500) {
-      const data = await response.json();
+    } else if (postRes.status < 500) {
+      const data = await postRes.json();
       if (data.errors) {
         return data.errors;
       }
     } else {
       return ['An error occurred. Please try again.']
     }
-  }
+
+
+}
 
 
 

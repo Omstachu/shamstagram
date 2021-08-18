@@ -6,65 +6,21 @@ import { createPost, getOnePost } from "../store/post";
 
 const PostForm = () => {
   const history = useHistory(); // so that we can redirect after the image upload is successful
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [post, setPost] = useState({ id: 0 });
   const [imageDB, setImageDB] = useState(null);
   const [description, setDescription] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
 
-  // const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getOnePost(post.id));
-  // }, [dispatch, post]);
 
   const user = useSelector((state) => state.session.user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let formData = new FormData();
-    formData.append("image", image);
-    //   formData.append("post", post)
-
-    // aws uploads can be a bit slow—displaying
-    // some sort of loading message is a good idea
-    setImageLoading(true);
-
-
-
-    const res = await fetch("/api/images/", {
-      method: "POST",
-      body: formData,
-    });
-
-
-
-    if (res.ok) {
-      const imageData = await res.json();
-      let new_post = {
-        imageId: imageData.id,
-        userId: user.id,
-        description,
-      };
-      // new_post = JSON.stringify(new_post);
-
-      await dispatch(createPost(new_post));
-      // formData.append("new_post", new_post);
-      // const postRes = await fetch("/api/posts/", {
-      //   method: "POST",
-      //   body: formData,
-      // });
-      // if (postRes.ok) {
-      //   const data = await postRes.json();
-      //   setPost(data);
-      // }
-    } else {
-      setImageLoading(false);
-      // a real app would probably use more advanced
-      // error handling
-      console.log("error");
-    }
+    const res = await dispatch(createPost(user, description, image));
+    console.log(res);
   };
 
   const updateImage = (e) => {
