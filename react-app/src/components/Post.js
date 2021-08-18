@@ -14,19 +14,19 @@ function Post() {
   const [deleteDisplay, setDeleteDisplay] = useState(false);
   const { postId } = useParams();
 
+
   const dispatch = useDispatch();
 
-  // console.log(postId);
+  const user = useSelector((state) => state.session);
+  const post = useSelector((state) => state.post);
 
   useEffect(() => {
     dispatch(getOnePost(postId));
     // console.log("INSIDE USE EFFECT ---------");
   }, [dispatch, postId]);
 
-  const post = useSelector((state) => state.post);
-  // console.log("THIS IS THE POST ----------", post[1]?.image_url);
+  console.log("THIS IS THE POST ----------", post[postId]);
 
-  console.log("description1111111", description)
 
   useEffect(() => {
     setDescription(post[postId]?.description);
@@ -43,6 +43,11 @@ function Post() {
         editContent = (<PostEditForm post={post[postId]} hideForm={()=>setEditDisplay(false)} />)
     }
 
+  let deleteContent = null
+    if (deleteDisplay && post[postId]?.userId == user.id){
+      deleteContent = (<button > delete </button>)
+    }  
+
   return (
   <>
     <div className="post-container__container">
@@ -54,6 +59,7 @@ function Post() {
       <button onClick={() => setEditDisplay(true)}>Edit </button>
       <div className="post-description">{description}</div>
       {editContent}
+      {deleteContent}
     </div>
   </div>
   </>
