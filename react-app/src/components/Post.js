@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createPost, getOnePost } from "../store/post";
+import PostDeleteButton from "./PostDeleteButton";
 import PostEditForm from "./PostEditForm";
 // import { PostDeleteButton } from "./PostDeleteButton";
 
@@ -11,7 +12,7 @@ function Post() {
   const [altText, setAltText] = useState("");
   const [username, setUsername] = useState("");
   const [editDisplay, setEditDisplay] = useState(false);
-  const [deleteDisplay, setDeleteDisplay] = useState(false);
+  const [deleteDisplay, setDeleteDisplay] = useState(true);
   const { postId } = useParams();
 
   const dispatch = useDispatch();
@@ -43,6 +44,13 @@ function Post() {
         editContent = (<PostEditForm post={post[postId]} hideForm={()=>setEditDisplay(false)} />)
     }
 
+  let deleteContent = null
+
+
+  if (deleteDisplay) {
+    deleteContent = (<PostDeleteButton post={post[postId]}/>)
+  }
+
   return (
   <>
     <div className="post-container__container">
@@ -54,6 +62,7 @@ function Post() {
       <button onClick={() => setEditDisplay(true)}>Edit </button>
       <div className="post-description">{description}</div>
       {editContent}
+      {deleteContent}
     </div>
   </div>
   </>

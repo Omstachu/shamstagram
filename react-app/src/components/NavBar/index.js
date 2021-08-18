@@ -30,7 +30,7 @@ const NavBar = () => {
             <img src={plus} className="navbar-image" alt="create" />
           </NavLink>
         </li>
-        {/* <li>
+        <li>
           <NavLink to="/users" exact={true} activeClassName="active">
             Users
           </NavLink>
@@ -44,7 +44,7 @@ const NavBar = () => {
           <NavLink to="/posts/1" exact={true} activeClassName="active">
             First Post
           </NavLink>
-        </li> */}
+        </li>
         <li className="link-container__profile">
           <button onClick={openModal} className="navbar-profile">
             <img src={profile} className="navbar-profile__image" alt="create" />

@@ -55,11 +55,9 @@ def get_post(pageId):
 def delete_post(id):
     id = int(id)
     post = Post.query.get(id)
-    if post.userId == current_user.id:
-        db.session.delete(post)
-        db.session.commit()
-        return {'Success': 'Success!'}
-    return {'error': 'You are not the owner of this.'}
+    db.session.delete(post)
+    db.session.commit()
+    return {'Success': 'Success!'}
 
 
 @post_routes.route('/<int:id>/edit', methods=["POST"])

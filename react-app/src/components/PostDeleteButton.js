@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { erasePost } from '../store/post';
 
-const PostDeleteButton = () => {
+const PostDeleteButton = ({post}) => {
     const dispatch = useDispatch()
-    //function handleDelete()
+    console.log(post)
+    const handleDelete = async (e) => {
+        // e.preventDefault();
+        await dispatch(erasePost(post))
+    }
+
     return (
         <div>
-            {/* <button onSubmit={handleDelete()}>'Delete'</button> */}
+            <button onClick={handleDelete}>Delete</button>
         </div>
     )
 }
