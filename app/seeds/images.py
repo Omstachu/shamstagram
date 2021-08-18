@@ -7,12 +7,12 @@ def seed_images():
         alt_text='Ape', url='http://shamstagrambucket.s3.amazonaws.com/4d8ee9b5b04249399c6774c45b06d24e.png')
     table = Image(
         alt_text='Table', url='http://shamstagrambucket.s3.amazonaws.com/015086c7ee4a4216bbf2d9b3e2e04b26.jpg')
-    hot_sauce = Image(
-        alt_text='Hot Sauce', url='http://shamstagrambucket.s3.amazonaws.com/083559de235742a6b630f41c77040d9e.jpg')
+    drawer = Image(
+        alt_text='Drawer', url='http://shamstagrambucket.s3.amazonaws.com/015086c7ee4a4216bbf2d9b3e2e04b26.jpg')
 
     db.session.add(ape)
     db.session.add(table)
-    db.session.add(hot_sauce)
+    db.session.add(drawer)
 
     db.session.commit()
 

@@ -7,12 +7,12 @@ def seed_posts():
         imageId=1, userId=1, description='ape')
     table = Post(
         imageId=2, userId=2, description='table')
-    hot_sauce = Post(
-        imageId=3, userId=3, description='hot sauce')
+    drawer = Post(
+        imageId=3, userId=3, description='drawer')
 
     db.session.add(ape)
     db.session.add(table)
-    db.session.add(hot_sauce)
+    db.session.add(drawer)
 
     db.session.commit()
 
