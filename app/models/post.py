@@ -16,14 +16,13 @@ class Post(db.Model):
     user = relationship("User", back_populates="posts")
     image = relationship("Image", back_populates="posts")
 
-
     def to_dict(self):
         return {
             "id": self.id,
             "imageId": self.imageId,
             "userId": self.userId,
-            "description" : self.description,
-            "image_url" : self.image.url,
-            "image_alt_text" : self.image.alt_text,
-            "user_name" : self.user.username
+            "description": self.description,
+            "image_url": self.image.url,
+            "image_alt_text": self.image.alt_text,
+            "username": self.user.username
         }
