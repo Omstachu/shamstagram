@@ -1,10 +1,9 @@
-    /* TODO Add site wide styles */
-    
-    body {
-        background-color: #F0D3CD;
-    }
-    
-    nav ul {
+/* TODO Add site wide styles */
+body {
+  background-color: #f0d3cd;
+}
+
+/* nav ul {
         color: #73383A;
         display: flex;
         justify-content: space-between;
@@ -15,19 +14,61 @@
         color: white;
         border-radius: 20px;
     }
-    
+
     nav ul a:visited {
         color: #F0D3CD;
     }
-    
+
     .logout-navbar {
         border-radius: 20px;
     }
-    
+
     .navbar-logo {
         display: flex;
         position: relative;
         margin: 10px;
         height: 50%;
         width: 20%;
-    }
+    } */
+
+.post-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 10%;
+  left: 35%;
+  background-color: white;
+  width: 500px;
+  padding: 10px;
+}
+
+.post-username {
+  position: relative;
+  left: -1px;
+  width: 500px;
+  box-sizing: border-box;
+  border: 5px solid black;
+  padding: 10px;
+}
+
+.post-image__container {
+  height: 500px;
+  width: 500px;
+  padding: 15px;
+  padding-bottom: 0px;
+}
+
+.post-image {
+  width: 500px; /* width of container */
+  height: 500px; /* height of container */
+  object-fit: cover;
+  box-sizing: border-box;
+  border: 5px solid black;
+}
+
+.post-description {
+  padding: 15px;
+  box-sizing: border-box;
+  border: 5px solid black;
+}

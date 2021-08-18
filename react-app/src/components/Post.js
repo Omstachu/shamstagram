@@ -28,12 +28,13 @@ function Post() {
   });
 
   return (
-    <>
-      <h1>Post</h1>
-      <div>{username}</div>
-      <img src={imageUrl}></img>
-      <div>{description}</div>
-    </>
+    <div className="post-container">
+      <div className="post-username">{username}</div>
+      <div className="post-image__container">
+        <img className="post-image" src={imageUrl}></img>
+      </div>
+      <div className="post-description">{description}</div>
+    </div>
   );
 }
 
