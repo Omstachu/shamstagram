@@ -130,14 +130,16 @@ export const erasePost = (post) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
+    console.log('this means it works sorta----', data)
     dispatch(deletePost(data))
-    return null;
+    return data;
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
       return data.errors;
     }
   } else {
+    console.log('this doesnt work')
     return ['An error occurred. Please try again.']
   }
 }

@@ -6,13 +6,15 @@ const PostDeleteButton = ({post}) => {
     const dispatch = useDispatch()
     console.log(post)
     const handleDelete = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         await dispatch(erasePost(post))
     }
 
     return (
         <div>
-            <button onClick={handleDelete}>Delete</button>
+            <form onSubmit={handleDelete}>
+            <button type='submit'>Delete</button>
+            </form>
         </div>
     )
 }

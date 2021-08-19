@@ -48,6 +48,7 @@ function Post() {
 
 
   if (deleteDisplay) {
+    console.log('THIS IS A POST----', post)
     deleteContent = (<PostDeleteButton post={post[postId]}/>)
   }
 

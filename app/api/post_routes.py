@@ -55,6 +55,7 @@ def get_post(pageId):
 def delete_post(id):
     id = int(id)
     post = Post.query.get(id)
+    print('This is the postDelete route ---', post)
     db.session.delete(post)
     db.session.commit()
     return {'Success': 'Success!'}
