@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { uploadImage } from "../../store/image";
 import { createPost, getOnePost } from "../../store/post";
+import "./PostForm.css"
 
 const PostForm = () => {
   const history = useHistory(); // so that we can redirect after the image upload is successful
@@ -34,17 +35,20 @@ const PostForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="file" accept="image/*" onChange={updateImage} />
-      <input
-        placeholder="Description"
-        type="text"
-        value={description}
-        onChange={updateDescription}
-      />
-      <button type="submit">Submit</button>
-      {imageLoading && <p>Loading...</p>}
-    </form>
+    <div className="create-post-container">
+      <form className="create-post-form-container" onSubmit={handleSubmit}>
+        <input className="file-upload-input" type="file" accept="image/*" onChange={updateImage} />
+        <input className = "create-post-input"
+          placeholder="Description"
+          type="text"
+          value={description}
+          onChange={updateDescription}
+          maxLength="140"
+          />
+        <button className = "create-post-button" type="submit">Submit</button>
+        {imageLoading && <p>Loading...</p>}
+      </form>
+    </div>
   );
 };
 

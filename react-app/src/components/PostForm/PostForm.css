@@ -1,0 +1,28 @@
+.create-post-container {
+    position: relative;
+    left: 50%;
+    bottom: -50%;
+    float: left
+}
+
+.create-post-form-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 5px solid;
+    left: -50%;
+    bottom: -50%;
+    float: left;
+}
+
+.file-upload-input {
+    font-family: "Oxygen", sans-serif;
+}
+
+.create-post-input {
+    font-family: "Fjalla One", sans-serif;
+}
+
+.create-post-button {}
