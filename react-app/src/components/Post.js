@@ -14,17 +14,18 @@ function Post(propPostId) {
   const [deleteDisplay, setDeleteDisplay] = useState(false);
   let { postId } = useParams();
 
+
   const dispatch = useDispatch();
 
-  if (propPostId !== {}) {
+  if (!postId) {
     postId = propPostId.postId;
   }
+  const user = useSelector((state) => state.session);
+  const post = useSelector((state) => state.post);
 
   useEffect(() => {
     dispatch(getOnePost(postId));
   }, [dispatch, postId]);
-
-  const post = useSelector((state) => state.post);
 
   useEffect(() => {
     setDescription(post[postId]?.description);
@@ -44,6 +45,11 @@ function Post(propPostId) {
     );
   }
 
+  let deleteContent = null
+    if (deleteDisplay && post[postId]?.userId == user.id){
+      deleteContent = (<button > delete </button>)
+    }
+
   return (
     <>
       <div className="post-container__container">
@@ -55,10 +61,11 @@ function Post(propPostId) {
           <button onClick={() => setEditDisplay(true)}>Edit </button>
           <div className="post-description">{description}</div>
           {editContent}
+          {deleteContent}
         </div>
       </div>
     </>
-  );
+  )
 }
 
 export default Post;

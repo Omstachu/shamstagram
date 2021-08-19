@@ -43,18 +43,8 @@ def get_all_posts():
 @post_routes.route('/<int:pageId>')
 @login_required
 def get_post(pageId):
-    # post = Post.query.get(pageId)
-    # print("post is here -----------",post)
-    # return post.to_dict()
-
     posts = db.session.query(Post).join(User, Image).all()
-
     postDict = {post.id: post.to_dict() for post in posts}
-
-    # postDict = {post:posts[post.id] for post in posts}
-    # use dict comprehension to create a dictionary with to_dict of each post
-
-    print("post is here -----------", postDict)
     return postDict
 
 
@@ -73,12 +63,11 @@ def delete_post(id):
 @post_routes.route('/<int:id>/edit', methods=["POST"])
 @login_required
 def edit_post(id):
+    #post_data = json.loads(request.form["postID"])
+    postId = request.form["postId"]
+    description = request.form["description"]
     # post form should be modified to editForm
-    form = PostForm()
-    post = Post.query.get(id)
-    post.description = form.description.data
-    print("POST BACKEND------------------------------------------", post)
-    print("FORM DATA DESCRIPTION------------------------------------", form.data)
-    db.session.add(post)
+    post = Post.query.get(postId)
+    post.description = description
     db.session.commit()
     return {'Success': 'Success!'}
