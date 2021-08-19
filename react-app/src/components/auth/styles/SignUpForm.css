@@ -1,0 +1,55 @@
+.signup-form-container {
+    position: relative;
+    left: 50%;
+    margin-top: 10%;
+    float: left;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: -50%;
+    bottom: -50%;
+    float: left;
+    background: #c24150;
+    padding: 25px;
+    box-sizing: border-box;
+    font-family: "BioRhyme", serif;
+    border-radius: 20px;
+    color: #0f2840;
+}
+
+.input-label {
+    font-size: 10px;
+    position: relative;
+    left: 5px;
+    top: 17px;
+    color: rgb(0, 0, 0, 0.75);
+}
+
+input[type="text"] {
+    padding-top: 14px;
+    padding-left: 10px;
+}
+
+input[type="password"] {
+    padding-top: 14px;
+    padding-left: 10px;
+}
+
+.signup_input {
+    width: 185px;
+}
+
+.input-container {
+    width: 200px;
+}
+
+.signup-errors {
+    font-weight: bold;
+    color: #0f2840;
+    font-family: "Oxygen", sans-serif;
+}
