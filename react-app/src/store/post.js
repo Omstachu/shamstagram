@@ -1,7 +1,7 @@
 const ADD_POST = "posts/ADD_POST";
 const GET_POST = "posts/GET_POST";
-const DELETE_POST = 'posts/DELETE_POST'
-const UPDATE_POST = 'posts/UPDATE_POST'
+const DELETE_POST = "posts/DELETE_POST";
+const UPDATE_POST = "posts/UPDATE_POST";
 
 const addPost = (post) => ({
   type: ADD_POST,
@@ -14,54 +14,50 @@ const getPost = (post) => ({
 });
 const deletePost = (post) => ({
   type: DELETE_POST,
-  payload: post
-})
+  payload: post,
+});
 
 const updatePost = (post) => ({
   type: UPDATE_POST,
-  payload: post
-})
+  payload: post,
+});
 
 export const createPost = (user, description, image) => async (dispatch) => {
-    let formData = new FormData();
-    let new_post = {};
-    formData.append("image", image);
-    const res = await fetch("/api/images/", {
-      method: "POST",
-      body: formData,
-    });
-    if (res.ok) {
-      const imageData = await res.json();
-      new_post = {
-        imageId: imageData.id,
-        userId: user.id,
-        description,
-      };
+  let formData = new FormData();
+  let new_post = {};
+  formData.append("image", image);
+  const res = await fetch("/api/images/", {
+    method: "POST",
+    body: formData,
+  });
+  if (res.ok) {
+    const imageData = await res.json();
+    new_post = {
+      imageId: imageData.id,
+      userId: user.id,
+      description,
+    };
+  }
+  new_post = JSON.stringify(new_post);
+  formData.append("new_post", new_post);
+  const postRes = await fetch("/api/posts/", {
+    method: "POST",
+    body: formData,
+  });
+
+  if (postRes.ok) {
+    const data = await postRes.json();
+    dispatch(addPost(data));
+    return null;
+  } else if (postRes.status < 500) {
+    const data = await postRes.json();
+    if (data.errors) {
+      return data.errors;
     }
-    new_post = JSON.stringify(new_post);
-    formData.append("new_post", new_post);
-    const postRes = await fetch("/api/posts/", {
-      method: "POST",
-      body: formData,
-    });
-
-    if (postRes.ok) {
-      const data = await postRes.json();
-      dispatch(addPost(data))
-      return null;
-    } else if (postRes.status < 500) {
-      const data = await postRes.json();
-      if (data.errors) {
-        return data.errors;
-      }
-    } else {
-      return ['An error occurred. Please try again.']
-    }
-
-
-}
-
-
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+};
 
 export const getOnePost = (postId) => async (dispatch) => {
   const response = await fetch(`/api/posts/${postId}`);
@@ -78,7 +74,7 @@ export const getOnePost = (postId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(addPost(data))
+    dispatch(addPost(data));
     return null;
   } else if (response.status < 500) {
     const data = await response.json();
@@ -86,24 +82,24 @@ export const getOnePost = (postId) => async (dispatch) => {
       return data.errors;
     }
   } else {
-    return ['An error occurred. Please try again.']
-  };
-}
+    return ["An error occurred. Please try again."];
+  }
+};
 
 export const editPost = (post) => async (dispatch) => {
   const response = await fetch(`/api/posts/${post.id}/edit`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      post
-    })
-  })
+      post,
+    }),
+  });
 
   if (response.ok) {
     await response.json();
-    dispatch(updatePost(post))
+    dispatch(updatePost(post));
     return null;
   } else if (response.status < 500) {
     const data = await response.json();
@@ -111,38 +107,40 @@ export const editPost = (post) => async (dispatch) => {
       return data.errors;
     }
   } else {
-    return ['An error occurred. Please try again.']
+    return ["An error occurred. Please try again."];
   }
-}
-
+};
 
 export const erasePost = (post) => async (dispatch) => {
+  console.log("this is before res----------------------");
   const response = await fetch(`/api/posts/${post.id}/delete`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      post
-    })
+      post,
+    }),
+  });
 
-  })
+  console.log("This is after res ----------------");
 
   if (response.ok) {
     const data = await response.json();
-    console.log('this means it works sorta----', data)
-    dispatch(deletePost(data))
+    console.log("this means it works sorta----", data);
+    dispatch(deletePost(data));
     return data;
   } else if (response.status < 500) {
     const data = await response.json();
+    console.log("data errors >>>>>>>>>>>>", data.errors);
     if (data.errors) {
       return data.errors;
     }
   } else {
-    console.log('this doesnt work')
-    return ['An error occurred. Please try again.']
+    console.log("this doesnt work >>>>>>>>>>>>>>>>>>");
+    return ["An error occurred. Please try again."];
   }
-}
+};
 
 const initialState = {
   post: {},
@@ -151,19 +149,19 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_POST:
-    return action.post; //may need to add ...state
+      return action.post; //may need to add ...state
     case ADD_POST:
-      return { posts: action.payload }
+      return { posts: action.payload };
     case DELETE_POST:
-      delete state[action.payload.id]
-      return state
+      delete state.posts[action.payload.id];
+      return state;
     case UPDATE_POST:
-      const newState = {...state}
-      console.log("NEWSTATE", newState)
-      console.log("STATE", state)
-      newState[action.payload.id] = action.payload
-      return newState
+      const newState = { ...state };
+      console.log("NEWSTATE", newState);
+      console.log("STATE", state);
+      newState[action.payload.id] = action.payload;
+      return newState;
     default:
       return state;
-    }
   }
+}

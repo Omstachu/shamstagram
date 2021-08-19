@@ -50,10 +50,10 @@ def get_post(pageId):
     return postDict
 
 
-@post_routes.route('/:id/delete', methods=["POST"])
+@post_routes.route('/<int:id>/delete', methods=["POST"])
 @login_required
 def delete_post(id):
-    id = int(id)
+    print('this is the start of the route ----------------')
     post = Post.query.get(id)
     print('This is the postDelete route ---', post)
     db.session.delete(post)
