@@ -3,7 +3,6 @@ nav ul {
   bottom: -1px;
   left: 1px;
   right: 1px;
-  color: #73383a;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -70,9 +69,8 @@ nav ul a:visited {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* bottom: 115px;
-  right: 300px; */
-  height: 100px;
+  bottom: 110px;
+  height: 120px;
   width: 100px;
   background-color: #73383a;
 }

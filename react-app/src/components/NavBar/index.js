@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Modal from "react-modal";
 import LogoutButton from "../auth/LogoutButton";
-import image from "./image.png";
-import plus from "./plus.png";
-import profile from "./profile.png";
+import image from "./images/image.png";
+import plus from "./images/plus.png";
+import profile from "./images/profile.png";
 import "./NavBar.css";
 
 const NavBar = () => {
@@ -30,21 +30,6 @@ const NavBar = () => {
             <img src={plus} className="navbar-image" alt="create" />
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/images" exact={true} activeClassName="active">
-            Images
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/posts/1" exact={true} activeClassName="active">
-            First Post
-          </NavLink>
-        </li>
         <li className="link-container__profile">
           <button onClick={openModal} className="navbar-profile">
             <img src={profile} className="navbar-profile__image" alt="create" />
@@ -54,6 +39,7 @@ const NavBar = () => {
             onRequestClose={closeModal}
             className="navbar-modal"
             overlayClassName="navbar-modal__overlay"
+            parentSelector={() => document.querySelector(".navbar-profile")}
           >
             <LogoutButton className="navbar-modal__button" />
             <button className="navbar-modal__button">
@@ -66,6 +52,23 @@ const NavBar = () => {
                 Sign Up
               </NavLink>
             </button>
+            {/* Remove these after done with testing */}
+            {/* <li>
+              <NavLink to="/users" exact={true} activeClassName="active">
+                Users
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/images" exact={true} activeClassName="active">
+                Images
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/posts/1" exact={true} activeClassName="active">
+                First Post
+              </NavLink>
+            </li> */}
+            {/* End of what we need to remove after testing */}
           </Modal>
         </li>
       </ul>
