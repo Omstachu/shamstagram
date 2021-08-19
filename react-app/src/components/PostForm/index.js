@@ -37,7 +37,8 @@ const PostForm = () => {
   return (
     <div className="create-post-container">
       <form className="create-post-form-container" onSubmit={handleSubmit}>
-        <input className="file-upload-input" type="file" accept="image/*" onChange={updateImage} />
+        {/* <label for="file-upload">Choose File</label> */}
+        <input className="file-upload-input" id="file-upload" type="file" accept="image/*" onChange={updateImage} />
         <input className = "create-post-input"
           placeholder="Description"
           type="text"
