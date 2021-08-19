@@ -13,8 +13,6 @@ const PostForm = () => {
   const [description, setDescription] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
 
-
-
   const user = useSelector((state) => state.session.user);
 
   const handleSubmit = async (e) => {
@@ -35,7 +33,12 @@ const PostForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="file" accept="image/*" onChange={updateImage} />
+      <input
+        className="test"
+        type="file"
+        accept="image/*"
+        onChange={updateImage}
+      />
       <input
         placeholder="Description"
         type="text"

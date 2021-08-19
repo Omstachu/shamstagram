@@ -54,3 +54,7 @@ body {
   border: 5px solid #c24150;
   font-family: "Oxygen", sans-serif;
 }
+
+.test::-webkit-file-upload-button {
+  visibility: hidden;
+}
