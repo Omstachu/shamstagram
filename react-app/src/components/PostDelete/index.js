@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { erasePost } from '../../store/post';
+import './PostDelete.css'
 
 const PostDeleteButton = () => {
     const dispatch = useDispatch()

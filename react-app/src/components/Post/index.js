@@ -59,7 +59,8 @@ function Post(propPostId) {
           <div className="post-image__container">
             <img className="post-image" src={imageUrl} alt={altText}></img>
           </div>
-          <button onClick={() => setEditDisplay(true)}>Edit </button>
+          <button className="post-button edit-description-button" onClick={() => setEditDisplay(true)}>Edit </button>
+          <button className="post-button delete-post-button">Delete </button>
           <div className="post-description">{description}</div>
           {editContent}
           {deleteContent}
