@@ -78,7 +78,8 @@ nav ul a:visited {
     bottom: 110px;
     height: 120px;
     width: 100px;
-    background-color: #73383a;
+    background-color: #DD9183;
+    border-radius: 7px;
 }
 
 .navbar-modal__overlay {
@@ -91,7 +92,13 @@ nav ul a:visited {
 }
 
 .navbar-modal__button {
-    background-color: #cc757c;
+    font-family: "BioRhyme", sans-serif;
+    border-radius: 12px;
+    size: 50%;
+    background-color: #0F2840;
+    box-shadow: 1px 1px 1px #C24150;
+    color: #C24150;
+    border-style: none;
 }
 
 .link-container__profile {
