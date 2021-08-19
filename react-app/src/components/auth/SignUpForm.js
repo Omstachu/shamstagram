@@ -107,10 +107,10 @@ const SignUpForm = () => {
           Sign Up
         </button>
         <button className="signup_button" type="submit">
-          Sign Up
+          Login Page
         </button>
         <button className="signup_button" type="submit">
-          Sign Up
+          Sign in as Demo User
         </button>
       </form>
     </div>
