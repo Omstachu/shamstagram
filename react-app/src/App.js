@@ -7,7 +7,7 @@ import PostForm from "./components/PostForm";
 import NavBar from "./components/NavBar";
 import Image from "./components/Image";
 import Post from "./components/Post";
-import Feed from "./components/Feed";
+// import Feed from "./components/Feed";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
@@ -54,7 +54,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          <Feed />
+          Hompage
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

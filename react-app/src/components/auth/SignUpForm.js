@@ -46,6 +46,7 @@ const SignUpForm = () => {
   return (
     <div className="signup-form-container">
       <form className="signup-form" onSubmit={onSignUp}>
+        <h1>Shamstagram</h1>
         <div>
           {errors.map((error, ind) => (
             <div className="signup-errors" key={ind}>
@@ -77,26 +78,30 @@ const SignUpForm = () => {
             />
           </label>
         </div>
-        <div>
-          <label>Password</label>
-          <input
-            className="signup_input"
-            type="password"
-            name="password"
-            onChange={updatePassword}
-            value={password}
-          ></input>
+        <div className="input-container">
+          <label>
+            <span className="input-label">Password:</span>
+            <input
+              className="signup_input"
+              type="password"
+              name="password"
+              onChange={updatePassword}
+              value={password}
+            ></input>
+          </label>
         </div>
-        <div>
-          <label>Repeat Password</label>
-          <input
-            className="signup_input"
-            type="password"
-            name="repeat_password"
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-          ></input>
+        <div className="input-container">
+          <label>
+            <span className="input-label">Repeat Password:</span>
+            <input
+              className="signup_input"
+              type="password"
+              name="repeat_password"
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              required={true}
+            ></input>
+          </label>
         </div>
         <button className="signup_button" type="submit">
           Sign Up
