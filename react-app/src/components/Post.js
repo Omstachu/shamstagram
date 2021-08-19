@@ -4,7 +4,6 @@ import { useParams, Redirect, useHistory } from "react-router-dom";
 import { createPost, getOnePost } from "../store/post";
 import PostDeleteButton from "./PostDeleteButton";
 import PostEditForm from "./PostEditForm";
-// import { PostDeleteButton } from "./PostDeleteButton";
 
 function Post() {
   const [description, setDescription] = useState("");
@@ -12,7 +11,8 @@ function Post() {
   const [altText, setAltText] = useState("");
   const [username, setUsername] = useState("");
   const [editDisplay, setEditDisplay] = useState(false);
-  const [deleteDisplay, setDeleteDisplay] = useState(true);
+  const [editButtonDisplay, setEditButtonDisplay] = useState(false);
+  const [deleteDisplay, setDeleteDisplay] = useState(false);
   const { postId } = useParams();
 
   const dispatch = useDispatch();
@@ -20,6 +20,7 @@ function Post() {
 
   // console.log(postId);
   const post = useSelector((state) => state.post);
+  const user = useSelector((state) => state.session.user);
 
   // useEffect(() => {
   //   if (!post[postId]) {
@@ -42,6 +43,10 @@ function Post() {
     setImageUrl(post[postId]?.image_url);
     setUsername(post[postId]?.username);
     setAltText(post[postId]?.alt_text);
+    if (user.id === post[postId]?.userId) {
+      setDeleteDisplay(true);
+      setEditButtonDisplay(true);
+    }
   }, [post, postId]);
 
   let editContent = null;
@@ -53,6 +58,12 @@ function Post() {
         hideForm={() => setEditDisplay(false)}
       />
     );
+  }
+
+  let editButton = null;
+
+  if (editButtonDisplay) {
+    editButton = <button onClick={() => setEditDisplay(true)}>Edit </button>;
   }
 
   let deleteContent = null;
@@ -70,7 +81,7 @@ function Post() {
           <div className="post-image__container">
             <img className="post-image" src={imageUrl} alt={altText}></img>
           </div>
-          <button onClick={() => setEditDisplay(true)}>Edit </button>
+          {editButton}
           <div className="post-description">{description}</div>
           {editContent}
           {deleteContent}

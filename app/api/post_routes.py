@@ -53,13 +53,14 @@ def get_post(pageId):
 @post_routes.route('/<int:id>/delete', methods=["POST"])
 @login_required
 def delete_post(id):
-    print('this is the start of the route ----------------')
+    print('this is the start of the route ----------------', current_user.id)
     post = Post.query.get(id)
-    print('This is the postDelete route ---', post)
-    db.session.delete(post)
-    db.session.commit()
-    return {'Success': 'Success!'}
+    if current_user.id == post.userId:
+        db.session.delete(post)
+        db.session.commit()
+        return {'Success': id}
 
+    return {'Fail': "This is not your post"}
 
 @post_routes.route('/<int:id>/edit', methods=["POST"])
 @login_required

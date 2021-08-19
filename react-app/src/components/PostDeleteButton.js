@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { erasePost } from "../store/post";
 
 const PostDeleteButton = ({ post }) => {
   const dispatch = useDispatch();
-  console.log(post);
+  const history = useHistory();
+
   const handleDelete = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     await dispatch(erasePost(post));
+    history.push("/");
   };
 
   return (

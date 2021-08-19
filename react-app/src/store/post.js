@@ -153,8 +153,13 @@ export default function reducer(state = initialState, action) {
     case ADD_POST:
       return { posts: action.payload };
     case DELETE_POST:
-      delete state.posts[action.payload.id];
-      return state;
+      if (state[action.payload["Fail"]]) {
+        return state;
+      }
+      if (state[action.payload["Success"]]) {
+        delete state[action.payload["Success"]];
+        return state;
+      }
     case UPDATE_POST:
       const newState = { ...state };
       console.log("NEWSTATE", newState);
