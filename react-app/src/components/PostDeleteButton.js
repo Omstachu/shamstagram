@@ -10,6 +10,7 @@ const PostDeleteButton = ({ post }) => {
   const handleDelete = async (e) => {
     e.preventDefault();
     await dispatch(erasePost(post));
+    history.push("/posts/1");
     history.push("/");
   };
 
