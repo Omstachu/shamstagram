@@ -48,7 +48,7 @@ export const createPost = (user, description, image) => async (dispatch) => {
   if (postRes.ok) {
     const data = await postRes.json();
     dispatch(addPost(data));
-    return null;
+    return {'data': data};
   } else if (postRes.status < 500) {
     const data = await postRes.json();
     if (data.errors) {

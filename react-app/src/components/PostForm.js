@@ -18,7 +18,8 @@ const PostForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await dispatch(createPost(user, description, image));
-    console.log(res);
+    console.log('-----------------------------',res);
+    history.push(`/posts/${res.data.id}`)
   };
 
   const updateImage = (e) => {
