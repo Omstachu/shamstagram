@@ -17,11 +17,7 @@ const PostDeleteButton = ({ post }) => {
 
   return (
     <form onSubmit={handleDelete}>
-      <button
-        className="post-button delete-post-button"
-        type="submit"
-        parentSelector={() => document.querySelector(".post-description")}
-      >
+      <button className="post-button delete-post-button" type="submit">
         Delete
       </button>
     </form>

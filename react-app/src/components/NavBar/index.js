@@ -40,6 +40,7 @@ const NavBar = () => {
             className="navbar-modal"
             overlayClassName="navbar-modal__overlay"
             parentSelector={() => document.querySelector(".navbar-profile")}
+            ariaHideApp={false}
           >
             <LogoutButton className="navbar-modal__button" />
           </Modal>

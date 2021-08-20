@@ -14,7 +14,6 @@ def image_upload():
         return {"errors": "image required"}, 400
 
     image = request.files["image"]
-    print(request.files)
     if not allowed_file(image.filename):
         return {"errors": "file type not permitted"}, 400
     alt_text = image.filename.rsplit('.', 1)[0]
@@ -39,22 +38,11 @@ def image_upload():
 
     new_image = {"id": new_image.id,
                  "alt_text": new_image.alt_text, "url": new_image.url}
-    # print(new_image)
 
     return new_image
-
-    # image = form
-
-    # return {'users': [user.to_dict() for user in users]}
-
 
 @image_routes.route('/', methods=["GET"])
 @login_required
 def show_image():
-    # image = Image.query.all()[0].url
     images = Image.query.all()
-    # print("Image--------------------------------", images)
-    # return {"images": {image.id: (image.url, image.alt_text) for image in images}}
     return {"images": {image.id: {"url": image.url, "alt_text": image.alt_text} for image in images}}
-
-# Test this branch

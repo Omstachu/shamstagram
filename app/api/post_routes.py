@@ -51,7 +51,6 @@ def get_post(pageId):
 @post_routes.route('/<int:id>/delete', methods=["POST"])
 @login_required
 def delete_post(id):
-    print('this is the start of the route ----------------', current_user.id)
     post = Post.query.get(id)
     if current_user.id == post.userId:
         db.session.delete(post)
@@ -63,7 +62,6 @@ def delete_post(id):
 @post_routes.route('/<int:id>/edit', methods=["POST"])
 @login_required
 def edit_post(id):
-    #post_data = json.loads(request.form["postID"])
     postId = request.form["postId"]
     description = request.form["description"]
     # post form should be modified to editForm
