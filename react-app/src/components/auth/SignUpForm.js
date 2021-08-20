@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { signUp, login } from "../../store/session";
@@ -13,6 +13,14 @@ const SignUpForm = () => {
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  useEffect(() => {
+      if(password !== repeatPassword){
+        setErrors(["Passwords don't match"]);
+      }else{
+        setErrors([]);
+      }
+  }, [password, repeatPassword]);
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -43,6 +51,11 @@ const SignUpForm = () => {
 
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
+    if(password !== repeatPassword){
+      setErrors(["Passwords don't match"]);
+    }else{
+      setErrors([]);
+    }
   };
 
   if (user) {

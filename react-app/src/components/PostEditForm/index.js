@@ -33,6 +33,7 @@ const PostEditForm = ({ post, hideForm }) => {
         onChange={updateDescription}
         maxLength="140"
       />
+      <div className="charcounter_description">Characters Remaining : {140 - description.length}</div>
       <button className="post-button edit-submit-button" type="submit">
         Submit
       </button>
