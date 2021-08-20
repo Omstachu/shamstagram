@@ -5,6 +5,7 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import PostForm from "./components/PostForm";
 import NavBar from "./components/NavBar";
+import LogoBar from "./components/LogoBar";
 import Image from "./components/Image";
 import Post from "./components/Post";
 import PostFeed from "./components/PostFeed";
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <LogoBar />
       <NavBar />
       <Switch>
         <Route path="/login" exact={true}>
