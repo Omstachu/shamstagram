@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Redirect, useHistory } from "react-router-dom";
-import { createPost, getOnePost } from "../../store/post";
+import { useParams, useHistory } from "react-router-dom";
+import { getOnePost } from "../../store/post";
 import PostDelete from "../PostDelete";
 import PostEditForm from "../PostEditForm";
 import "./Post.css";
@@ -28,10 +28,9 @@ function Post(propPostId) {
 
   useEffect(() => {
     if (!post[postId]) {
-      console.log("this is the post at postID >>>>>>>>>>", post[postId]);
       history.push("/");
     }
-  }, [postId]);
+  }, [history, post, postId]);
 
   useEffect(() => {
     dispatch(getOnePost(postId));
@@ -46,7 +45,7 @@ function Post(propPostId) {
       setDeleteDisplay(true);
       setEditButtonDisplay(true);
     }
-  }, [post, postId]);
+  }, [user.id, post, postId]);
 
   let editContent = null;
 
@@ -66,7 +65,6 @@ function Post(propPostId) {
       <button
         className="post-button edit-description-button"
         onClick={() => setEditDisplay(true)}
-        parentSelector={() => document.querySelector(".delete-post-button")}
       >
         Edit{" "}
       </button>
@@ -76,7 +74,6 @@ function Post(propPostId) {
   let deleteContent = null;
 
   if (deleteDisplay) {
-    console.log("THIS IS A POST----", post);
     deleteContent = (
       <PostDelete
         className="post-button delete-post-button"

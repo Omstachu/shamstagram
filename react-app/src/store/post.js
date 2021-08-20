@@ -48,7 +48,7 @@ export const createPost = (user, description, image) => async (dispatch) => {
   if (postRes.ok) {
     const data = await postRes.json();
     dispatch(addPost(data));
-    return {'data': data};
+    return { data: data };
   } else if (postRes.status < 500) {
     const data = await postRes.json();
     if (data.errors) {
@@ -61,15 +61,11 @@ export const createPost = (user, description, image) => async (dispatch) => {
 
 export const getOnePost = (postId) => async (dispatch) => {
   const response = await fetch(`/api/posts/${postId}`);
-  // console.log("INSIDE THE THUNK ------------");
 
   if (response.ok) {
     const detail = await response.json();
     dispatch(getPost(detail));
-    // console.log("RESPONSE IS OK ------------");
     return "string of sometighjsfdgab";
-  } else {
-    console.log("NOT OK ----------");
   }
 
   if (response.ok) {
@@ -92,25 +88,18 @@ export const getAllPosts = () => async (dispatch) => {
   if (response.ok) {
     const detail = await response.json();
     dispatch(getPost(detail));
-    return "string of sometighjsfdgab";
   }
 };
 
 export const editPost = (post) => async (dispatch) => {
   let postId = post.id;
-  console.log("post", post);
   let formData = new FormData();
-  //# post = JSON.stringify(post);
   formData.append("postId", post.id);
   formData.append("description", post.description);
   formData.append("imageId", post.imageId);
   formData.append("userId", post.userId);
-  console.log("formData", formData);
   const response = await fetch(`/api/posts/${postId}/edit`, {
     method: "POST",
-    // headers: {
-    //   'Content-Type': 'application/json'
-    // },
     body: formData,
   });
 
@@ -129,7 +118,6 @@ export const editPost = (post) => async (dispatch) => {
 };
 
 export const erasePost = (post) => async (dispatch) => {
-  console.log("this is before res----------------------");
   const response = await fetch(`/api/posts/${post.id}/delete`, {
     method: "POST",
     headers: {
@@ -142,12 +130,10 @@ export const erasePost = (post) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    console.log("this means it works sorta----", data);
     dispatch(deletePost(data));
     return data;
   } else if (response.status < 500) {
     const data = await response.json();
-    console.log("data errors >>>>>>>>>>>>", data.errors);
     if (data.errors) {
       return data.errors;
     }
@@ -174,10 +160,9 @@ export default function reducer(state = initialState, action) {
         delete state[action.payload["Success"]];
         return state;
       }
+      break;
     case UPDATE_POST:
       const newState = { ...state };
-      console.log("NEWSTATE", newState);
-      console.log("STATE", state);
       newState[action.payload.id] = action.payload;
       return newState;
     default:
