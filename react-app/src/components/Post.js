@@ -25,12 +25,12 @@ function Post(propPostId) {
   const post = useSelector((state) => state.post);
   const user = useSelector((state) => state.session.user);
 
-  // useEffect(() => {
-  //   if (!post[postId]) {
-  //     console.log("this is the post at postID >>>>>>>>>>", post[postId]);
-  //     history.push("/");
-  //   }
-  // }, [postId]);
+  useEffect(() => {
+    if (!post[postId]) {
+      console.log("this is the post at postID >>>>>>>>>>", post[postId]);
+      history.push("/");
+    }
+  }, [postId]);
 
   useEffect(() => {
     dispatch(getOnePost(postId));

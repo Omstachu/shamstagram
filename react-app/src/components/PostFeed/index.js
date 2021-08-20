@@ -15,7 +15,9 @@ function PostFeed() {
   const posts = useSelector((state) => state.post);
 
   for (let key in posts) {
-    list.push(key);
+    if (key !== "post") {
+      list.push(key);
+    }
   }
 
   return (

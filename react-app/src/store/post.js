@@ -74,11 +74,7 @@ export const getOnePost = (postId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-<<<<<<< HEAD
-    // dispatch(addPost(data))
-=======
     dispatch(addPost(data));
->>>>>>> Post_Delete
     return null;
   } else if (response.status < 500) {
     const data = await response.json();
@@ -89,7 +85,6 @@ export const getOnePost = (postId) => async (dispatch) => {
     return ["An error occurred. Please try again."];
   }
 };
-<<<<<<< HEAD
 
 export const getAllPosts = () => async (dispatch) => {
   const response = await fetch(`/api/posts/`);
@@ -102,7 +97,7 @@ export const getAllPosts = () => async (dispatch) => {
 };
 
 export const editPost = (post) => async (dispatch) => {
-  let postId = post.id
+  let postId = post.id;
   console.log("post", post);
   let formData = new FormData();
   //# post = JSON.stringify(post);
@@ -112,25 +107,12 @@ export const editPost = (post) => async (dispatch) => {
   formData.append("userId", post.userId);
   console.log("formData", formData);
   const response = await fetch(`/api/posts/${postId}/edit`, {
-    method: 'POST',
+    method: "POST",
     // headers: {
     //   'Content-Type': 'application/json'
     // },
-    body:formData
-  })
-=======
-
-export const editPost = (post) => async (dispatch) => {
-  const response = await fetch(`/api/posts/${post.id}/edit`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      post,
-    }),
+    body: formData,
   });
->>>>>>> Post_Delete
 
   if (response.ok) {
     await response.json();
