@@ -42,16 +42,6 @@ const NavBar = () => {
             parentSelector={() => document.querySelector(".navbar-profile")}
           >
             <LogoutButton className="navbar-modal__button" />
-            <button className="navbar-modal__button">
-              <NavLink to="/login" exact={true} activeClassName="active">
-                Login
-              </NavLink>
-            </button>
-            <button className="navbar-modal__button">
-              <NavLink to="/sign-up" exact={true} activeClassName="active">
-                Sign Up
-              </NavLink>
-            </button>
           </Modal>
         </li>
       </ul>

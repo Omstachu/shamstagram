@@ -1,17 +1,8 @@
 .edit-description-button {
-  position: relative;
   background-color: #c24150;
   box-shadow: 1px 1px 1px #0f2840;
   right: 10px;
-  /* bottom: 65px; */
-}
-
-.delete-post-button {
-  background-color: #0f2840;
-  box-shadow: 1px 1px 1px #c24150;
-  color: #c24150;
-  right: 10px;
-  /* top: 0px; */
+  bottom: 54px;
 }
 
 .edit-submit-button {

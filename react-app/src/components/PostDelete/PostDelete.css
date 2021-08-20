@@ -1,5 +1,7 @@
 .delete-post-button {
-  background-color: black;
-  box-shadow: 1px 1px 1px #0f2840;
-  bottom: 70px;
+  background-color: #0f2840;
+  box-shadow: 1px 1px 1px #c24150;
+  color: #c24150;
+  right: 10px;
+  bottom: 50px;
 }
