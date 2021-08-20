@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { erasePost } from "../store/post";
+import "./PostDelete.css";
 
 const PostDeleteButton = ({ post }) => {
   const dispatch = useDispatch();
@@ -17,7 +18,9 @@ const PostDeleteButton = ({ post }) => {
   return (
     <div>
       <form onSubmit={handleDelete}>
-        <button type="submit">Delete</button>
+        <button className="post-button delete-post-button" type="submit">
+          Delete
+        </button>
       </form>
     </div>
   );

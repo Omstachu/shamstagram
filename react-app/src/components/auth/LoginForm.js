@@ -74,9 +74,18 @@ const LoginForm = () => {
             />
           </label>
         </div>
-        <button type="submit">Login</button>
-        <button onClick={() => history.push("/sign-up")}>New? Sign Up</button>
-        <button onClick={demoOnLogin}>Demo Login</button>
+        <button className="login-button" type="submit">
+          Login
+        </button>
+        <button
+          className="signup-button"
+          onClick={() => history.push("/sign-up")}
+        >
+          New? Sign Up
+        </button>
+        <button className="demo-button" onClick={demoOnLogin}>
+          Demo Login
+        </button>
       </form>
     </div>
   );

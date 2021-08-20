@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect, useHistory } from "react-router-dom";
-import { createPost, getOnePost } from "../store/post";
-import PostDeleteButton from "./PostDeleteButton";
+import { createPost, getOnePost } from "../../store/post";
+import PostDeleteButton from "../PostDeleteButton";
 import PostEditForm from "./PostEditForm";
+import "./Post.css";
 
 function Post(propPostId) {
   const [description, setDescription] = useState("");
@@ -61,7 +62,14 @@ function Post(propPostId) {
   let editButton = null;
 
   if (editButtonDisplay) {
-    editButton = <button onClick={() => setEditDisplay(true)}>Edit </button>;
+    editButton = (
+      <button
+        className="post-button edit-description-button"
+        onClick={() => setEditDisplay(true)}
+      >
+        Edit{" "}
+      </button>
+    );
   }
 
   let deleteContent = null;
@@ -80,6 +88,7 @@ function Post(propPostId) {
             <img className="post-image" src={imageUrl} alt={altText}></img>
           </div>
           {editButton}
+          <button className="post-button delete-post-button">Delete </button>
           <div className="post-description">{description}</div>
           {editContent}
           {deleteContent}

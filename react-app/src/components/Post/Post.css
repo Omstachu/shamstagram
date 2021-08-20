@@ -1,0 +1,93 @@
+.post-container__container {
+    position: relative;
+    left: 50%;
+    float: left;
+}
+
+.post-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 10%;
+    bottom: 10%;
+    left: -50%;
+    float: left;
+    /* background-color: azure; */
+    background-color: #F0D3CD;
+    width: 500px;
+    box-sizing: border-box;
+    margin: 10px;
+    /* margin-bottom: 0px; */
+    box-shadow: 4;
+}
+
+.post-username {
+    position: relative;
+    left: 0px;
+    width: 500px;
+    box-sizing: border-box;
+    border-top: 7px double #CC757C;
+    border-left: 7px double #CC757C;
+    border-right: 7px double #CC757C;
+    border: 7px double #CC757C;
+    border-radius: 7px;
+    box-shadow: 5px 5px 5px #CC757C, -5px -5px 5px #CC757C;
+    border-radius: 7px;
+    padding: 10px;
+    font-family: "Fjalla One", sans-serif;
+    margin-bottom: 10px;
+    margin-top: 50px;
+}
+
+.post-image__container {
+    height: 500px;
+    width: 500px;
+    background-color: white;
+    border-radius: 7px;
+    /* padding: 15px; */
+    /* padding-bottom: 0px; */
+}
+
+.post-image {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    box-sizing: border-box;
+    /* border: 7px double #c24150; */
+    border: 7px double #CC757C;
+    border-radius: 7px;
+    box-shadow: 5px 5px 5px #CC757C, -5px -5px 5px #CC757C;
+}
+
+.post-description {
+    position: relative;
+    padding: 34px;
+    padding-right: 70px;
+    width: 500px;
+    box-sizing: border-box;
+    background-color: #DD9183;
+    /* border-top: 1px ridge #CC757C; */
+    border: 1px groove #CC757C;
+    box-shadow: 3px 3px 3px #CC757C;
+    border-radius: 7px;
+    /* border: 5px solid #CC757C; */
+    font-family: "Fjalla One", sans-serif;
+    color: #4A374E;
+    bottom: 45px;
+    word-wrap: break-word;
+}
+
+.post-button {
+    position: relative;
+    /* color: black; */
+    /* top: 15px; */
+    z-index: 3;
+    margin-left: 450px;
+    font-family: "BioRhyme", sans-serif;
+    /* background-color: #9b5860; */
+    border-radius: 12px;
+    /* box-shadow: 1px 1px 1px #0F2840; */
+    /* border: 2px ridge #0F2840; */
+    /* border: 4px 4px 4px #0F2840; */
+}

@@ -24,6 +24,7 @@
     /* font-family: "Oxygen", sans-serif; */
     border-radius: 20px;
     color: #0f2840;
+    box-shadow: 3px 3px 3px #0F2840;
 }
 
 .input-label {
@@ -46,6 +47,21 @@ input[type="password"] {
 
 .login_input {
     width: 185px;
+    border-radius: 5px;
+    border-style: none;
+    box-shadow: 1px 1px 2px #0F2840;
+    font-family: "BioRhyme", sans-serif;
+}
+
+.login-button {
+    position: relative;
+    z-index: 3;
+    margin-top: 10px;
+    font-family: "BioRhyme", sans-serif;
+    border-radius: 12px;
+    background-color: #0F2840;
+    box-shadow: 1px 1px 1px #C24150;
+    color: #C24150;
 }
 
 .input-container {

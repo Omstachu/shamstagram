@@ -53,7 +53,7 @@ const NavBar = () => {
               </NavLink>
             </button>
             {/* Remove these after done with testing */}
-            {/* <li>
+            <li>
               <NavLink to="/users" exact={true} activeClassName="active">
                 Users
               </NavLink>
@@ -67,7 +67,7 @@ const NavBar = () => {
               <NavLink to="/posts/1" exact={true} activeClassName="active">
                 First Post
               </NavLink>
-            </li> */}
+            </li>
             {/* End of what we need to remove after testing */}
           </Modal>
         </li>
