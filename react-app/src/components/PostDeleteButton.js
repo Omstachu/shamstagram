@@ -1,15 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { erasePost } from './store/post';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { erasePost } from "../store/post";
 
-const PostDeleteButton = () => {
-    const dispatch = useDispatch()
-    function handleDelete()
-    return (
-        <div>
-            {/* <button onSubmit={handleDelete()}>'Delete'</button> */}
-        </div>
-    )
-}
-rac
-export default PostDeleteButton
+const PostDeleteButton = ({ post }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    await dispatch(erasePost(post));
+    history.push("/");
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleDelete}>
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+  );
+};
+
+export default PostDeleteButton;

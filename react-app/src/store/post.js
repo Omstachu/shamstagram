@@ -74,7 +74,11 @@ export const getOnePost = (postId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
+<<<<<<< HEAD
     // dispatch(addPost(data))
+=======
+    dispatch(addPost(data));
+>>>>>>> Post_Delete
     return null;
   } else if (response.status < 500) {
     const data = await response.json();
@@ -85,6 +89,7 @@ export const getOnePost = (postId) => async (dispatch) => {
     return ["An error occurred. Please try again."];
   }
 };
+<<<<<<< HEAD
 
 export const getAllPosts = () => async (dispatch) => {
   const response = await fetch(`/api/posts/`);
@@ -113,6 +118,19 @@ export const editPost = (post) => async (dispatch) => {
     // },
     body:formData
   })
+=======
+
+export const editPost = (post) => async (dispatch) => {
+  const response = await fetch(`/api/posts/${post.id}/edit`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      post,
+    }),
+  });
+>>>>>>> Post_Delete
 
   if (response.ok) {
     await response.json();
@@ -129,6 +147,7 @@ export const editPost = (post) => async (dispatch) => {
 };
 
 export const erasePost = (post) => async (dispatch) => {
+  console.log("this is before res----------------------");
   const response = await fetch(`/api/posts/${post.id}/delete`, {
     method: "POST",
     headers: {
@@ -141,10 +160,12 @@ export const erasePost = (post) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
+    console.log("this means it works sorta----", data);
     dispatch(deletePost(data));
-    return null;
+    return data;
   } else if (response.status < 500) {
     const data = await response.json();
+    console.log("data errors >>>>>>>>>>>>", data.errors);
     if (data.errors) {
       return data.errors;
     }
@@ -164,8 +185,13 @@ export default function reducer(state = initialState, action) {
     case ADD_POST:
       return { posts: action.payload };
     case DELETE_POST:
-      delete state[action.payload.id];
-      return state;
+      if (state[action.payload["Fail"]]) {
+        return state;
+      }
+      if (state[action.payload["Success"]]) {
+        delete state[action.payload["Success"]];
+        return state;
+      }
     case UPDATE_POST:
       const newState = { ...state };
       console.log("NEWSTATE", newState);
