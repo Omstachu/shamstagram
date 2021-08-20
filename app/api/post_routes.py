@@ -48,17 +48,17 @@ def get_post(pageId):
     return postDict
 
 
-@post_routes.route('/:id/delete', methods=["POST"])
+@post_routes.route('/<int:id>/delete', methods=["POST"])
 @login_required
 def delete_post(id):
-    id = int(id)
+    print('this is the start of the route ----------------', current_user.id)
     post = Post.query.get(id)
-    if post.userId == current_user.id:
+    if current_user.id == post.userId:
         db.session.delete(post)
         db.session.commit()
-        return {'Success': 'Success!'}
-    return {'error': 'You are not the owner of this.'}
+        return {'Success': id}
 
+    return {'Fail': "This is not your post"}
 
 @post_routes.route('/<int:id>/edit', methods=["POST"])
 @login_required

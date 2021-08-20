@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { createPost, getOnePost } from "../store/post";
-import PostEditForm from "./PostEditForm";
-// import { PostDeleteButton } from "./PostDeleteButton";
+import { useParams, Redirect, useHistory } from "react-router-dom";
+import { createPost, getOnePost } from "../../store/post";
+import PostDelete from "../PostDelete";
+import PostEditForm from "../PostEditForm";
+import "./Post.css";
 
 function Post(propPostId) {
   const [description, setDescription] = useState("");
@@ -11,17 +12,26 @@ function Post(propPostId) {
   const [altText, setAltText] = useState("");
   const [username, setUsername] = useState("");
   const [editDisplay, setEditDisplay] = useState(false);
+  const [editButtonDisplay, setEditButtonDisplay] = useState(false);
   const [deleteDisplay, setDeleteDisplay] = useState(false);
   let { postId } = useParams();
 
-
   const dispatch = useDispatch();
+  const history = useHistory();
 
   if (!postId) {
     postId = propPostId.postId;
   }
-  const user = useSelector((state) => state.session);
+
   const post = useSelector((state) => state.post);
+  const user = useSelector((state) => state.session.user);
+
+  useEffect(() => {
+    if (!post[postId]) {
+      console.log("this is the post at postID >>>>>>>>>>", post[postId]);
+      history.push("/");
+    }
+  }, [postId]);
 
   useEffect(() => {
     dispatch(getOnePost(postId));
@@ -32,6 +42,10 @@ function Post(propPostId) {
     setImageUrl(post[postId]?.image_url);
     setUsername(post[postId]?.username);
     setAltText(post[postId]?.alt_text);
+    if (user.id === post[postId]?.userId) {
+      setDeleteDisplay(true);
+      setEditButtonDisplay(true);
+    }
   }, [post, postId]);
 
   let editContent = null;
@@ -45,10 +59,31 @@ function Post(propPostId) {
     );
   }
 
-  let deleteContent = null
-    if (deleteDisplay && post[postId]?.userId == user.id){
-      deleteContent = (<button > delete </button>)
-    }
+  let editButton = null;
+
+  if (editButtonDisplay) {
+    editButton = (
+      <button
+        className="post-button edit-description-button"
+        onClick={() => setEditDisplay(true)}
+        parentSelector={() => document.querySelector(".delete-post-button")}
+      >
+        Edit{" "}
+      </button>
+    );
+  }
+
+  let deleteContent = null;
+
+  if (deleteDisplay) {
+    console.log("THIS IS A POST----", post);
+    deleteContent = (
+      <PostDelete
+        className="post-button delete-post-button"
+        post={post[postId]}
+      />
+    );
+  }
 
   return (
     <>
@@ -58,14 +93,14 @@ function Post(propPostId) {
           <div className="post-image__container">
             <img className="post-image" src={imageUrl} alt={altText}></img>
           </div>
-          <button onClick={() => setEditDisplay(true)}>Edit </button>
           <div className="post-description">{description}</div>
-          {editContent}
+          {editButton}
           {deleteContent}
+          {editContent}
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default Post;

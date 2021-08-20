@@ -1,0 +1,37 @@
+.edit-description-button {
+  background-color: #c24150;
+  box-shadow: 1px 1px 1px #0f2840;
+  right: 10px;
+  bottom: 54px;
+}
+
+.edit-submit-button {
+  position: relative;
+  bottom: 90px;
+  right: 55px;
+  word-wrap: break-word;
+  background-color: #dd9183;
+  box-shadow: 2px 2px 2px #c24150;
+  color: #0f2840;
+  border-style: none;
+}
+
+.edit-form-input {
+  position: relative;
+  padding: 34px;
+  padding-right: 85px;
+  width: 450px;
+  margin: auto;
+  left: 25px;
+  box-sizing: border-box;
+  background-color: white;
+  /* border-top: 1px ridge #CC757C; */
+  border: 1px groove #cc757c;
+  box-shadow: 3px 3px 3px #cc757c;
+  border-radius: 7px;
+  /* border: 5px solid #CC757C; */
+  font-family: "Fjalla One", sans-serif;
+  color: #4a374e;
+  bottom: 45px;
+  word-wrap: break-word;
+}

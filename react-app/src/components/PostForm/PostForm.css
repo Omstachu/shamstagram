@@ -1,0 +1,84 @@
+    .create-post-container {
+        position: relative;
+        top: 100px;
+        left: 50%;
+        bottom: -50%;
+        float: left;
+    }
+    
+    .create-post-form-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        box-shadow: 3px 3px 3px #0F2840, -4px -4px 4px #C24150;
+        border-radius: 12px;
+        left: -50%;
+        bottom: -50%;
+        float: left;
+        padding: 120px;
+        padding-top: 80px;
+        padding-bottom: 80px;
+        width: 100%;
+    }
+    
+    .file-upload-input {
+        position: relative;
+        left: 15px;
+        font-family: "Fjalla", sans-serif;
+        margin-bottom: 5px;
+        /* border-radius: 12px; */
+    }
+    
+    .file-upload-input::-webkit-file-upload-button {
+        font-family: "BioRhyme", sans-serif;
+        border-radius: 12px;
+        background-color: #C24150;
+        color: #F0D3CD;
+    }
+    
+    .file-upload-button {
+        position: relative;
+        z-index: 3;
+        font-family: "BioRhyme", sans-serif;
+        border-radius: 12px;
+        box-sizing: border-box;
+        background-color: #0F2840;
+        box-shadow: 1px 1px 1px #C24150;
+        color: #C24150;
+        width: 50%;
+    }
+    /* label {
+        cursor: pointer;
+    }
+
+    #file-upload {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    } */
+    
+    .create-post-input {
+        font-family: "Fjalla One", sans-serif;
+        border-radius: 5px;
+        border-style: none;
+        box-shadow: 2px 2px 4px #C24150;
+        margin: 5px;
+        padding: 95px;
+        width: 100%;
+    }
+    
+    .create-post-button {
+        position: relative;
+        z-index: 3;
+        font-family: "BioRhyme", sans-serif;
+        border-radius: 12px;
+        box-sizing: border-box;
+        background-color: #0F2840;
+        box-shadow: 1px 1px 1px #C24150;
+        color: #C24150;
+        width: 50%;
+        margin-top: 10px;
+    }

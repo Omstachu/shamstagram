@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
-import { uploadImage } from '../store/image';
-import { editPost } from '../store/post'
+import { uploadImage } from '../../store/image';
+import { editPost } from '../../store/post'
+import "./PostEditForm.css"
 
 const PostEditForm = ({post, hideForm}) => {
     const history = useHistory(); // so that we can redirect after the image upload is successful
@@ -34,13 +35,14 @@ const PostEditForm = ({post, hideForm}) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input
+            <input className='edit-form-input'
                 placeholder="Description"
                 type="text"
                 value={description}
                 onChange={updateDescription}
+                maxLength='140'
             />
-            <button type="submit">Submit</button>
+            <button className="post-button edit-submit-button" type="submit">Submit</button>
         </form>
     )
 }

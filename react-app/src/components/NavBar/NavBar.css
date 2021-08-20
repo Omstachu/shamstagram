@@ -11,7 +11,7 @@ nav ul {
   background-color: #c24150;
   color: white;
   border-radius: 20px;
-  z-index: 1;
+  z-index: 5;
   margin: 0px;
 }
 
@@ -31,6 +31,7 @@ nav ul a:visited {
 }
 
 /* Navbar Icons */
+
 .navbar-image {
   display: flex;
   position: relative;
@@ -41,6 +42,7 @@ nav ul a:visited {
   width: 100px;
   object-fit: cover;
 }
+
 .navbar-profile {
   background-color: #c24150;
   padding: 0px 10px;
@@ -53,6 +55,7 @@ nav ul a:visited {
   text-decoration: none;
   display: inline-block;
 }
+
 .navbar-profile__image {
   display: flex;
   position: relative;
@@ -64,16 +67,19 @@ nav ul a:visited {
 }
 
 /* modal stuff */
+
 .navbar-modal {
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   bottom: 110px;
-  height: 120px;
+  height: 60px;
   width: 100px;
-  background-color: #73383a;
+  background-color: #dd9183;
+  border-radius: 7px;
 }
+
 .navbar-modal__overlay {
   position: absolute;
   top: 0px;
@@ -82,9 +88,17 @@ nav ul a:visited {
   bottom: 0;
   background-color: rgb(246, 152, 0, 0);
 }
+
 .navbar-modal__button {
-  background-color: #cc757c;
+  font-family: "BioRhyme", sans-serif;
+  border-radius: 12px;
+  size: 50%;
+  background-color: #0f2840;
+  box-shadow: 1px 1px 1px #c24150;
+  color: #c24150;
+  border-style: none;
 }
+
 .link-container__profile {
   position: relative;
   width: 100px;

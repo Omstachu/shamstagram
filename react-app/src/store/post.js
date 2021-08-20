@@ -48,7 +48,7 @@ export const createPost = (user, description, image) => async (dispatch) => {
   if (postRes.ok) {
     const data = await postRes.json();
     dispatch(addPost(data));
-    return null;
+    return {'data': data};
   } else if (postRes.status < 500) {
     const data = await postRes.json();
     if (data.errors) {
@@ -74,7 +74,7 @@ export const getOnePost = (postId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    // dispatch(addPost(data))
+    dispatch(addPost(data));
     return null;
   } else if (response.status < 500) {
     const data = await response.json();
@@ -97,7 +97,7 @@ export const getAllPosts = () => async (dispatch) => {
 };
 
 export const editPost = (post) => async (dispatch) => {
-  let postId = post.id
+  let postId = post.id;
   console.log("post", post);
   let formData = new FormData();
   //# post = JSON.stringify(post);
@@ -107,12 +107,12 @@ export const editPost = (post) => async (dispatch) => {
   formData.append("userId", post.userId);
   console.log("formData", formData);
   const response = await fetch(`/api/posts/${postId}/edit`, {
-    method: 'POST',
+    method: "POST",
     // headers: {
     //   'Content-Type': 'application/json'
     // },
-    body:formData
-  })
+    body: formData,
+  });
 
   if (response.ok) {
     await response.json();
@@ -129,6 +129,7 @@ export const editPost = (post) => async (dispatch) => {
 };
 
 export const erasePost = (post) => async (dispatch) => {
+  console.log("this is before res----------------------");
   const response = await fetch(`/api/posts/${post.id}/delete`, {
     method: "POST",
     headers: {
@@ -141,10 +142,12 @@ export const erasePost = (post) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
+    console.log("this means it works sorta----", data);
     dispatch(deletePost(data));
-    return null;
+    return data;
   } else if (response.status < 500) {
     const data = await response.json();
+    console.log("data errors >>>>>>>>>>>>", data.errors);
     if (data.errors) {
       return data.errors;
     }
@@ -164,8 +167,13 @@ export default function reducer(state = initialState, action) {
     case ADD_POST:
       return { posts: action.payload };
     case DELETE_POST:
-      delete state[action.payload.id];
-      return state;
+      if (state[action.payload["Fail"]]) {
+        return state;
+      }
+      if (state[action.payload["Success"]]) {
+        delete state[action.payload["Success"]];
+        return state;
+      }
     case UPDATE_POST:
       const newState = { ...state };
       console.log("NEWSTATE", newState);

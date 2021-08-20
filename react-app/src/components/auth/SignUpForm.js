@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { signUp } from "../../store/session";
+import { Redirect, useHistory } from "react-router-dom";
+import { signUp, login } from "../../store/session";
 import "./styles/SignUpForm.css";
 
 const SignUpForm = () => {
@@ -12,6 +12,7 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -21,6 +22,11 @@ const SignUpForm = () => {
         setErrors(data);
       }
     }
+  };
+
+  const demoOnLogin = async (e) => {
+    e.preventDefault();
+    await dispatch(login("demo@aa.io", "password"));
   };
 
   const updateUsername = (e) => {
@@ -106,11 +112,11 @@ const SignUpForm = () => {
         <button className="signup_button" type="submit">
           Sign Up
         </button>
-        <button className="signup_button" type="submit">
-          Login Page
+        <button className="login_button" onClick={() => history.push("/login")}>
+          Already a user? Log in
         </button>
-        <button className="signup_button" type="submit">
-          Sign in as Demo User
+        <button className="demo_button" type="submit" onClick={demoOnLogin}>
+          Demo
         </button>
       </form>
     </div>

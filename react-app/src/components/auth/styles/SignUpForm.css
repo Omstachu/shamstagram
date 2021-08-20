@@ -1,55 +1,103 @@
 .signup-form-container {
-    position: relative;
-    left: 50%;
-    margin-top: 10%;
-    float: left;
+  position: relative;
+  left: 50%;
+  margin-top: 10%;
+  float: left;
 }
 
 .signup-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    left: -50%;
-    bottom: -50%;
-    float: left;
-    background: #c24150;
-    padding: 25px;
-    box-sizing: border-box;
-    font-family: "BioRhyme", serif;
-    border-radius: 20px;
-    color: #0f2840;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: -50%;
+  bottom: -50%;
+  float: left;
+  background: #c24150;
+  padding: 25px;
+  box-sizing: border-box;
+  font-family: "BioRhyme", serif;
+  border-radius: 20px;
+  color: #0f2840;
+  box-shadow: 3px 3px 3px #0f2840;
 }
 
 .input-label {
-    font-size: 10px;
-    position: relative;
-    left: 5px;
-    top: 17px;
-    color: rgb(0, 0, 0, 0.75);
+  font-size: 10px;
+  position: relative;
+  left: 5px;
+  top: 17px;
+  color: rgb(0, 0, 0, 0.75);
 }
 
 input[type="text"] {
-    padding-top: 14px;
-    padding-left: 10px;
+  padding-top: 14px;
+  padding-left: 10px;
 }
 
 input[type="password"] {
-    padding-top: 14px;
-    padding-left: 10px;
+  padding-top: 14px;
+  padding-left: 10px;
 }
 
 .signup_input {
-    width: 185px;
+  width: 185px;
+  border-radius: 5px;
+  border-style: none;
+  box-shadow: 1px 1px 2px #0f2840;
+  font-family: "BioRhyme", sans-serif;
+}
+
+.signup_button {
+  position: relative;
+  z-index: 3;
+  margin-top: 10px;
+  font-family: "BioRhyme", sans-serif;
+  border-radius: 12px;
+  background-color: #0f2840;
+  border-style: none;
+  box-shadow: 1px 1px 1px #c24150;
+  color: #c24150;
+}
+
+.login_button {
+  position: relative;
+  z-index: 3;
+  margin-top: 10px;
+  font-family: "BioRhyme", sans-serif;
+  border-radius: 12px;
+  border-style: none;
+  background-color: #4a374e;
+  box-shadow: 1px 1px 1px #4a374e;
+  color: #f0d3cd;
+}
+
+.demo_button {
+  position: relative;
+  z-index: 3;
+  margin-top: 10px;
+  font-family: "BioRhyme", sans-serif;
+  border-radius: 12px;
+  border-style: none;
+  background-color: #f0d3cd;
+  box-shadow: 1px 1px 1px #f0d3cd;
+  color: #0f2840;
 }
 
 .input-container {
-    width: 200px;
+  width: 200px;
 }
 
 .signup-errors {
-    font-weight: bold;
-    color: #0f2840;
-    font-family: "Oxygen", sans-serif;
+  font-weight: bold;
+  color: #0f2840;
+  font-family: "Oxygen", sans-serif;
 }
+
+/* @media screen and (max-height: 700px),
+screen and (min-width: 694px) {
+    .signup-form {
+        bottom: -75%;
+    }
+} */

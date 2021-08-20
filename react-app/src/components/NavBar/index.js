@@ -42,33 +42,6 @@ const NavBar = () => {
             parentSelector={() => document.querySelector(".navbar-profile")}
           >
             <LogoutButton className="navbar-modal__button" />
-            <button className="navbar-modal__button">
-              <NavLink to="/login" exact={true} activeClassName="active">
-                Login
-              </NavLink>
-            </button>
-            <button className="navbar-modal__button">
-              <NavLink to="/sign-up" exact={true} activeClassName="active">
-                Sign Up
-              </NavLink>
-            </button>
-            {/* Remove these after done with testing */}
-            {/* <li>
-              <NavLink to="/users" exact={true} activeClassName="active">
-                Users
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/images" exact={true} activeClassName="active">
-                Images
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/posts/1" exact={true} activeClassName="active">
-                First Post
-              </NavLink>
-            </li> */}
-            {/* End of what we need to remove after testing */}
           </Modal>
         </li>
       </ul>
