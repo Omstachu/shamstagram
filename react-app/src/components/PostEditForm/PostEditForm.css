@@ -35,3 +35,12 @@
   bottom: 45px;
   word-wrap: break-word;
 }
+
+.charcounter_description{
+  position: relative;
+  bottom: 70px;
+  left: 40px;
+  opacity: .8;
+  font-family: "IBM Plex Mono", sans-serif;
+  font-size: small;
+}

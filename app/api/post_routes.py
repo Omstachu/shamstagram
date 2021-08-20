@@ -64,8 +64,10 @@ def delete_post(id):
 def edit_post(id):
     postId = request.form["postId"]
     description = request.form["description"]
-    # post form should be modified to editForm
-    post = Post.query.get(postId)
-    post.description = description
-    db.session.commit()
-    return {'Success': 'Success!'}
+    if len(description) <= 140:
+        # post form should be modified to editForm
+        post = Post.query.get(postId)
+        post.description = description
+        db.session.commit()
+        return {'Success': 'Success!'}
+    return {'failure':"It is over 140"}
