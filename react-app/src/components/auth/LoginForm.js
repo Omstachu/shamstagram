@@ -78,13 +78,13 @@ const LoginForm = () => {
           Login
         </button>
         <button
-          className="signup-button"
+          className="signup_link_button"
           onClick={() => history.push("/sign-up")}
         >
           New? Sign Up
         </button>
-        <button className="demo-button" onClick={demoOnLogin}>
-          Demo Login
+        <button className="demo_button" onClick={demoOnLogin}>
+          Demo
         </button>
       </form>
     </div>

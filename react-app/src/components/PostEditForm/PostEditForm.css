@@ -1,45 +1,46 @@
-    .edit-description-button {
-        background-color: #C24150;
-        box-shadow: 1px 1px 1px #0F2840;
-        right: 10px;
-        top: 15px;
-    }
-    
-    .delete-post-button {
-        background-color: #0F2840;
-        box-shadow: 1px 1px 1px #C24150;
-        color: #C24150;
-        right: 10px;
-        top: 18px;
-    }
-    
-    .edit-submit-button {
-        position: relative;
-        bottom: 90px;
-        right: 55px;
-        word-wrap: break-word;
-        background-color: #DD9183;
-        box-shadow: 2px 2px 2px #C24150;
-        color: #0F2840;
-        border-style: none;
-    }
-    
-    .edit-form-input {
-        position: relative;
-        padding: 34px;
-        padding-right: 85px;
-        width: 450px;
-        margin: auto;
-        left: 25px;
-        box-sizing: border-box;
-        background-color: white;
-        /* border-top: 1px ridge #CC757C; */
-        border: 1px groove #CC757C;
-        box-shadow: 3px 3px 3px #CC757C;
-        border-radius: 7px;
-        /* border: 5px solid #CC757C; */
-        font-family: "Fjalla One", sans-serif;
-        color: #4A374E;
-        bottom: 45px;
-        word-wrap: break-word;
-    }
+.edit-description-button {
+  position: relative;
+  background-color: #c24150;
+  box-shadow: 1px 1px 1px #0f2840;
+  right: 10px;
+  /* bottom: 65px; */
+}
+
+.delete-post-button {
+  background-color: #0f2840;
+  box-shadow: 1px 1px 1px #c24150;
+  color: #c24150;
+  right: 10px;
+  /* top: 0px; */
+}
+
+.edit-submit-button {
+  position: relative;
+  bottom: 90px;
+  right: 55px;
+  word-wrap: break-word;
+  background-color: #dd9183;
+  box-shadow: 2px 2px 2px #c24150;
+  color: #0f2840;
+  border-style: none;
+}
+
+.edit-form-input {
+  position: relative;
+  padding: 34px;
+  padding-right: 85px;
+  width: 450px;
+  margin: auto;
+  left: 25px;
+  box-sizing: border-box;
+  background-color: white;
+  /* border-top: 1px ridge #CC757C; */
+  border: 1px groove #cc757c;
+  box-shadow: 3px 3px 3px #cc757c;
+  border-radius: 7px;
+  /* border: 5px solid #CC757C; */
+  font-family: "Fjalla One", sans-serif;
+  color: #4a374e;
+  bottom: 45px;
+  word-wrap: break-word;
+}

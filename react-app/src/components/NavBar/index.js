@@ -52,23 +52,6 @@ const NavBar = () => {
                 Sign Up
               </NavLink>
             </button>
-            {/* Remove these after done with testing */}
-            <li>
-              <NavLink to="/users" exact={true} activeClassName="active">
-                Users
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/images" exact={true} activeClassName="active">
-                Images
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/posts/1" exact={true} activeClassName="active">
-                First Post
-              </NavLink>
-            </li>
-            {/* End of what we need to remove after testing */}
           </Modal>
         </li>
       </ul>

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect, useHistory } from "react-router-dom";
 import { createPost, getOnePost } from "../../store/post";
-import PostDeleteButton from "../PostDeleteButton";
-import PostEditForm from "./PostEditForm";
+import PostDelete from "../PostDelete";
+import PostEditForm from "../PostEditForm";
 import "./Post.css";
 
 function Post(propPostId) {
@@ -66,6 +66,7 @@ function Post(propPostId) {
       <button
         className="post-button edit-description-button"
         onClick={() => setEditDisplay(true)}
+        parentSelector={() => document.querySelector(".delete-post-button")}
       >
         Edit{" "}
       </button>
@@ -76,7 +77,12 @@ function Post(propPostId) {
 
   if (deleteDisplay) {
     console.log("THIS IS A POST----", post);
-    deleteContent = <PostDeleteButton post={post[postId]} />;
+    deleteContent = (
+      <PostDelete
+        className="post-button delete-post-button"
+        post={post[postId]}
+      />
+    );
   }
 
   return (
@@ -87,11 +93,10 @@ function Post(propPostId) {
           <div className="post-image__container">
             <img className="post-image" src={imageUrl} alt={altText}></img>
           </div>
-          {editButton}
-          <button className="post-button delete-post-button">Delete </button>
           <div className="post-description">{description}</div>
-          {editContent}
+          {editButton}
           {deleteContent}
+          {editContent}
         </div>
       </div>
     </>

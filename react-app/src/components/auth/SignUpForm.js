@@ -116,7 +116,7 @@ const SignUpForm = () => {
           Already a user? Log in
         </button>
         <button className="demo_button" type="submit" onClick={demoOnLogin}>
-          Sign in as Demo User
+          Demo
         </button>
       </form>
     </div>

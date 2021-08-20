@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { erasePost } from "../store/post";
+import { erasePost } from "../../store/post";
 import "./PostDelete.css";
 
 const PostDeleteButton = ({ post }) => {
@@ -16,13 +16,15 @@ const PostDeleteButton = ({ post }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleDelete}>
-        <button className="post-button delete-post-button" type="submit">
-          Delete
-        </button>
-      </form>
-    </div>
+    <form onSubmit={handleDelete}>
+      <button
+        className="post-button delete-post-button"
+        type="submit"
+        parentSelector={() => document.querySelector(".post-description")}
+      >
+        Delete
+      </button>
+    </form>
   );
 };
 
