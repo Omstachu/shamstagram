@@ -1,134 +1,134 @@
-# Flask React Project
+# Shamstagram
 
-This is the starter for the Flask React project.
+Shamstagram is a website where users can post fake images about their fake life to their fake friends.
 
-## Getting started
+This project was created by Brandon Simpson, Serge Kassangana, Nate Bernier, and Peter Mace
+## Technologies
 
-1. Clone this repository (only this branch)
+### Frontend
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+#### React
+#### Redux
 
-2. Install dependencies
+### Backend
+#### Flask
+#### Postgres
+#### Sqlalchemy
+#### AWS S3
 
-   pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt   ```bash
+### Code snippets
+#### React S3 component react-app/src/components/PostForm/index.js
 
-      ```
+This is a simple html form with a file upload that call the createPost thunk.
+```
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await dispatch(createPost(user, description, image));
+    if (res.data === undefined){
+      setErrors(["You must enter an image format, jpg, jpeg, png, gif"])
+      return;
+    }
+    history.push(`/posts/${res.data.id}`);
+  };
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+  const updateImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+  const updateDescription = (e) => {
+    const description = e.target.value;
+    setDescription(description);
 
-   ```bash
-   pipenv shell
-   ```
+  };
 
-   ```bash
-   flask db upgrade
-   ```
+  return (
+    <div className="create-post-container">
+      <form className="create-post-form-container" onSubmit={handleSubmit}>
+        {errors.map((error, ind) => (
+            <div className="login-errors" key={ind}>
+              {error}
+            </div>
+          ))}
+        <input
+          className="file-upload-input"
+          id="file-upload"
+          type="file"
+          accept="image/*"
+          onChange={updateImage}
+        />...
+```
 
-   ```bash
-   flask seed all
-   ```
+#### AWS Redux thunk react-app/src/store
+This thunk takes the images, converts it to json and sends it to the images api backend route.
+```
+export const uploadImage = (picture) => async (dispatch) => {
+  const response = await fetch('/api/images', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        picture
+    })
+  });
+  
+  
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(addImage(data))
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
+  }
 
-   ```bash
-   flask run
-   ```
+}
+```
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+#### Back End Route app/api/image_routes.py
+This route generates a new unique filename, stores the image using that file name, and then stores the corresponding S3 bucket url.
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+```@image_routes.route('/', methods=["POST"])
+@login_required
+def image_upload():
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+    image = request.files["image"]
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+    alt_text = image.filename.rsplit('.', 1)[0]
+    image.filename = get_unique_filename(image.filename)
 
-## Deploy to Heroku
+    upload = upload_file_to_s3(image)
 
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+    url = upload["url"]
+    # flask_login allows us to get the current user from the request
+    new_image = Image(url=url, alt_text=alt_text)
 
-2. Create a new project on Heroku
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-5. Run
+    db.session.add(new_image)
+    db.session.flush()
+    db.session.refresh(new_image)
+    db.session.commit()
 
-   ```bash
-   heroku login
-   ```
+    new_image = {"id": new_image.id,
+                 "alt_text": new_image.alt_text, "url": new_image.url}
 
-6. Login to the heroku container registry
+    return new_image
+```
 
-   ```bash
-   heroku container:login
-   ```
+## Wiki 
 
-7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-8. Push your docker container to heroku from the root directory of your project.
-   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
-   This will build the Dockerfile and push the image to your heroku container registry.
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. Release your docker container to heroku
-
-      ```bash
-      heroku container:release web -a {NAME_OF_HEROKU_APP}
-      ```
-
-10. set up your database
-
-      ```bash
-      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-      ```
-
-11. Under Settings find "Config Vars" and add any additional/secret .env
-variables.
-
-12. profit
-
-### For M1 Mac users
-
-(Replaces **Step 8**)
-
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
-
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
-
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
-
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
-
-3. Use docker to push the image to the Heroku container registry:
-
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
+#### For more detailed development information(API, Database, User Stories, Feature List, and Deployment guide), visit our [wiki](https://github.com/Omstachu/shamstagram/wiki)
