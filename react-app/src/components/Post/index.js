@@ -50,22 +50,14 @@ function Post(propPostId) {
   let editContent = null;
 
   if (editDisplay) {
-    editContent = (
-      <PostEditForm
-        post={post[postId]}
-        hideForm={() => setEditDisplay(false)}
-      />
-    );
+    editContent = <PostEditForm post={post[postId]} hideForm={() => setEditDisplay(false)} />;
   }
 
   let editButton = null;
 
   if (editButtonDisplay) {
     editButton = (
-      <button
-        className="post-button edit-description-button"
-        onClick={() => setEditDisplay(true)}
-      >
+      <button className="post-button edit-description-button" onClick={() => setEditDisplay(true)}>
         Edit{" "}
       </button>
     );
@@ -74,12 +66,7 @@ function Post(propPostId) {
   let deleteContent = null;
 
   if (deleteDisplay) {
-    deleteContent = (
-      <PostDelete
-        className="post-button delete-post-button"
-        post={post[postId]}
-      />
-    );
+    deleteContent = <PostDelete className="post-button delete-post-button" post={post[postId]} />;
   }
 
   return (
@@ -89,6 +76,10 @@ function Post(propPostId) {
           <div className="post-username">{username}</div>
           <div className="post-image__container">
             <img className="post-image" src={imageUrl} alt={altText}></img>
+          </div>
+          <div>
+            <div>Like Count:</div>
+            <button>Like</button>
           </div>
           <div className="post-description">{description}</div>
           {editButton}
