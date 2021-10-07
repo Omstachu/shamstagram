@@ -17,7 +17,8 @@ def new_post():
     post = Post(
         imageId=post_data["imageId"],
         userId=post_data["userId"],
-        description=post_data["description"]
+        description=post_data["description"],
+        likes=0
     )
     db.session.add(post)
     db.session.flush()

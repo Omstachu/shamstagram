@@ -4,11 +4,11 @@ from app.models import db, Post
 # Adds a demo Post, you can add other Posts here if you want
 def seed_posts():
     ape = Post(
-        imageId=1, userId=1, description='ape')
+        imageId=1, userId=1, description='ape', likes=0)
     table = Post(
-        imageId=2, userId=2, description='table')
+        imageId=2, userId=2, description='table', likes=10)
     drawer = Post(
-        imageId=3, userId=3, description='drawer')
+        imageId=3, userId=3, description='drawer', likes=5)
 
     db.session.add(ape)
     db.session.add(table)

@@ -12,6 +12,7 @@ class Post(db.Model):
     imageId = db.Column(db.Integer, ForeignKey("images.id"), nullable=False)
     userId = db.Column(db.Integer, ForeignKey("users.id"), nullable=False)
     description = db.Column(db.String(140))
+    likes = db.Column(db.Integer, nullable=False)
 
     user = relationship("User", back_populates="posts")
     image = relationship("Image", back_populates="posts")
@@ -22,6 +23,7 @@ class Post(db.Model):
             "imageId": self.imageId,
             "userId": self.userId,
             "description": self.description,
+            "likes": self.likes,
             "image_url": self.image.url,
             "image_alt_text": self.image.alt_text,
             "username": self.user.username
