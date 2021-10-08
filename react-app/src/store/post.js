@@ -32,6 +32,7 @@ export const createPost = (user, description, image) => async (dispatch) => {
   });
   if (res.ok) {
     const imageData = await res.json();
+    // console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%", imageData.id)
     new_post = {
       imageId: imageData.id,
       userId: user.id,
