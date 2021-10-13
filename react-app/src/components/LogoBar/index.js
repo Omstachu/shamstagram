@@ -6,7 +6,7 @@ const LogoBar = () => {
   return (
     <div className="logo-container__container">
       <div className="logo-container">
-        <img className="logobar-image" src={logo} alt_text="logo" />
+        <img className="logobar-image" src={logo} alt="logo" />
       </div>
     </div>
   );
