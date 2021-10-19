@@ -26,11 +26,11 @@ export const createComment = (user, post, content) => async (dispatch) => {
         body: formData,
     })
     if (res.ok) {
-        const data = await postRes.json();
+        const data = await res.json();
         dispatch(addComment(data));
         return { data: data };
-    } else if (postRes.status < 500) {
-        const data = await postRes.json();
+    } else if (res.status < 500) {
+        const data = await res.json();
         if (data.errors) {
         return data.errors;
         }
