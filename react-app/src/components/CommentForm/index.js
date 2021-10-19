@@ -1,4 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { editPost } from "../../store/post";
 import "./CommentForm.css";
+
+const CommentForm = ({post, hideForm}) => {
+    const dispatch = useDispatch()
+    const [content, setContent] = useState("")
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        post.content = content
+        await dispatch(createComment(content));
+        hideForm()
+    }
+
+    const updateContent = (e) => {
+        const content = e.target.value;
+        setContent(content)
+    }
+
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input
+            className="comment-form-input"
+            placeholder="Content"
+            type="text"
+            value={content}
+            onChange={updateContent}
+            maxLength="140"
+            />
+            <div className="charcounter_description">Characters Remaining : {140 - content.length}</div>
+            <button type="submit">
+                Submit
+            </button>
+        </form>
+    )
+}
