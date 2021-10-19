@@ -12,3 +12,9 @@ comment_routes = Blueprint("comments", __name__)
 @login_required
 def new_comment():
     form = CommentForm()
+
+    # comment_data = json.loads(request.form["new_comment"])
+    # print(json.loads(request.form["new_comment"]))
+    # print(comment_data)
+
+    return "nana"

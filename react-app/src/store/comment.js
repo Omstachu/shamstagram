@@ -20,6 +20,7 @@ export const createComment = (user, post, content) => async (dispatch) => {
         postId: post.id,
         content,
     }
+    console.log(new_comment)
     formData.append("new_comment", new_comment)
     const res = await fetch("/api/comments/", {
         method: "POST",

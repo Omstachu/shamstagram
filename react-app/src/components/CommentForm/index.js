@@ -13,7 +13,7 @@ const CommentForm = ({post, hideForm}) => {
         e.preventDefault();
         post.content = content
         await dispatch(createComment(user, post, content));
-        hideForm()
+        // hideForm()
     }
 
     const updateContent = (e) => {
