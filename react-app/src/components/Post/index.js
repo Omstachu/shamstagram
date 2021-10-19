@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { getOnePost } from "../../store/post";
 import PostDelete from "../PostDelete";
 import PostEditForm from "../PostEditForm";
+import CommentForm from "../CommentForm";
 import "./Post.css";
 
 function Post(propPostId) {
@@ -82,6 +83,14 @@ function Post(propPostId) {
     );
   }
 
+  let commentContent = (
+    <CommentForm
+      post={post[postId]}
+    />
+  );
+
+
+
   return (
     <>
       <div className="post-container__container">
@@ -94,6 +103,7 @@ function Post(propPostId) {
           {editButton}
           {deleteContent}
           {editContent}
+          {commentContent}
         </div>
       </div>
     </>

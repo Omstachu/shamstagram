@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { createComment } from "../../store/comment";
 import "./CommentForm.css";
 
 const CommentForm = ({post, hideForm}) => {
@@ -36,3 +37,5 @@ const CommentForm = ({post, hideForm}) => {
         </form>
     )
 }
+
+export default CommentForm;
