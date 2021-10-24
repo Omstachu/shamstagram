@@ -10,7 +10,7 @@ const addComment = (comment) => ({
 
 const getComment = (comment) => ({
     type: GET_COMMENT,
-    payload: comment,
+    comment,
 })
 
 export const createComment = (user, post, content) => async (dispatch) => {
@@ -40,9 +40,10 @@ export const createComment = (user, post, content) => async (dispatch) => {
 
 export const getPostComments = () => async (dispatch) => {
     const response = await fetch(`/api/comments/`)
-
+    // console.log(response)
     if (response.ok) {
         const comments = await response.json()
+        // console.log(comments)
         dispatch(getComment(comments))
     }
 }
