@@ -6,7 +6,7 @@ import CommentForm from "../CommentForm";
 function CommentSection({postId}) {
     const dispatch = useDispatch()
 
-    const [postComments, setPostComments] = useState('')
+    const [postComments, setPostComments] = useState({})
 
     useEffect(() => {
         dispatch(getAllComments())
@@ -14,19 +14,27 @@ function CommentSection({postId}) {
     }, [dispatch, postId])
 
     const comments = useSelector((state) => state.comment)
-    // console.log(postId)
+    // console.log(comments)
 
     // let postComments = {}
-    for (let comment in comments){
-        if (comment.postId === postId){
-            postComments[postId] = comment
+
+    useEffect(() => {
+
+        let postComments = {}
+        for (let comment in comments){
+            // console.log(comment)
+            if (comments[comment].postId === postId){
+                console.log(postId)
+                postComments[comment] = comments[comment]
+            }
         }
-    }
+        setPostComments(postComments)
+    }, [comments, postId])
     console.log(postComments)
 
     return (
         <>
-
+        {/* {postComments.map()} */}
         </>
     )
 }
