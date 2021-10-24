@@ -15,17 +15,11 @@ const getComment = (comment) => ({
 
 export const createComment = (user, post, content) => async (dispatch) => {
     let formData = new FormData();
-    // let new_comment = {
-    //     userId: user.id,
-    //     postId: post.id,
-    //     content,
-    // }
 
-    // formData.append("new_comment", new_comment)
     formData.append("userId", user.id)
     formData.append("postId", post.id)
     formData.append("content", content)
-    // console.log(new_comment)
+
     const res = await fetch("/api/comments/", {
         method: "POST",
         body: formData,
@@ -43,6 +37,15 @@ export const createComment = (user, post, content) => async (dispatch) => {
         return ["An error occurred. Please try again."];
     }
 };
+
+export const getPostComments = () => async (dispatch) => {
+    const response = await fetch(`/api/comments/`)
+
+    if (response.ok) {
+        const comments = await response.json()
+        dispatch(getComment(comments))
+    }
+}
 
 const initialState = {
     post: {},

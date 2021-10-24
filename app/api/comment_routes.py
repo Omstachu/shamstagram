@@ -8,6 +8,16 @@ from ..forms import CommentForm
 comment_routes = Blueprint("comments", __name__)
 
 
+# @comment_routes.route('/<int:pageId>')
+@comment_routes.route('/')
+@login_required
+def get_post_comments():
+    comments = db.session.query(Comment).all()
+    commentsDict = {comment.id: comment.to_dict() for comment in comments}
+    print(commentsDict)
+    return commentsDict
+
+
 @comment_routes.route('/', methods=["POST"])
 @login_required
 def new_comment():
@@ -29,5 +39,4 @@ def new_comment():
         "content": comment.content
     }
 
-    print(comment)
     return comment

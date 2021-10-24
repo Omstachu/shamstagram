@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createComment } from "../../store/comment";
+import { createComment, getPostComments } from "../../store/comment";
 import "./CommentForm.css";
 
 const CommentForm = ({post, hideForm}) => {
@@ -13,6 +13,7 @@ const CommentForm = ({post, hideForm}) => {
         e.preventDefault();
         post.content = content
         await dispatch(createComment(user, post, content));
+        // await dispatch(getPostComments());
         // hideForm()
     }
 

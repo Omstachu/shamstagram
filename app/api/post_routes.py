@@ -31,6 +31,7 @@ def new_post():
             }
     return post
 
+
 @post_routes.route('/')
 @login_required
 def get_all_posts():
@@ -39,6 +40,7 @@ def get_all_posts():
     postDict = {post.id: post.to_dict() for post in posts}
 
     return postDict
+
 
 @post_routes.route('/<int:pageId>')
 @login_required
@@ -59,6 +61,7 @@ def delete_post(id):
 
     return {'Fail': "This is not your post"}
 
+
 @post_routes.route('/<int:id>/edit', methods=["POST"])
 @login_required
 def edit_post(id):
@@ -70,4 +73,4 @@ def edit_post(id):
         post.description = description
         db.session.commit()
         return {'Success': 'Success!'}
-    return {'failure':"It is over 140"}
+    return {'failure': "It is over 140"}
