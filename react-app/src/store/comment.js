@@ -38,18 +38,25 @@ export const createComment = (user, post, content) => async (dispatch) => {
     }
 };
 
-export const getPostComments = () => async (dispatch) => {
-    const response = await fetch(`/api/comments/`)
-    // console.log(response)
+export const getPostComments = (postId) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${postId}`)
     if (response.ok) {
         const comments = await response.json()
-        // console.log(comments)
+        // console.log(postId,"<><><><", comments)
+        dispatch(getComment(comments))
+    }
+}
+export const getAllComments = () => async (dispatch) => {
+    const response = await fetch(`/api/comments/`)
+    if (response.ok) {
+        const comments = await response.json()
+        // console.log(postId,"<><><><", comments)
         dispatch(getComment(comments))
     }
 }
 
 const initialState = {
-    post: {},
+    comment: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -57,7 +64,7 @@ export default function reducer(state = initialState, action) {
         case ADD_COMMENT:
             return { comments: action.payload}
         case GET_COMMENT:
-            return action.comment;
+            return action.comment
         default:
             return state
     }

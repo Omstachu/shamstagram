@@ -89,7 +89,7 @@ function Post(propPostId) {
     //   post={post[postId]}
 
     // />
-    <CommentSection/>
+    <CommentSection postId={post[postId].id}/>
   );
 
 
