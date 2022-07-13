@@ -13,7 +13,8 @@ def new_post():
     form = PostForm()
 
     post_data = json.loads(request.form["new_post"])
-    print(post_data, "****************")
+
+    print("post_data", post_data)
 
     post = Post(
         imageId=post_data["imageId"],

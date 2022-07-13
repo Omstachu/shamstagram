@@ -26,15 +26,13 @@ export const createPost = (user, description, image) => async (dispatch) => {
     let formData = new FormData();
     let new_post = {};
 
-    console.log(image, "***********************image");
-
     formData.append("image", image);
     const res = await fetch("/api/images/", {
         method: "POST",
         body: formData,
     });
 
-    console.log(res.ok, "*****************res.ok");
+    console.log(res.ok, "res.ok");
 
     if (res.ok) {
         const imageData = await res.json();

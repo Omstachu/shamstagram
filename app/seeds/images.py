@@ -8,7 +8,7 @@ def seed_images():
     table = Image(
         alt_text='Table', url='http://shamstagrambucket.s3.amazonaws.com/015086c7ee4a4216bbf2d9b3e2e04b26.jpg')
     drawer = Image(
-        alt_text='Drawer', url='http://shamstagrambucket.s3.amazonaws.com/015086c7ee4a4216bbf2d9b3e2e04b26.jpg')
+        alt_text='Drawer', url='https://shamstagram-bucket.s3.amazonaws.com/P1020502.JPG')
 
     db.session.add(ape)
     db.session.add(table)

@@ -14,8 +14,10 @@ def image_upload():
         return {"errors": "image required"}, 400
 
     image = request.files["image"]
+
     if not allowed_file(image.filename):
         return {"errors": "file type not permitted"}, 400
+
     alt_text = image.filename.rsplit('.', 1)[0]
     image.filename = get_unique_filename(image.filename)
 
@@ -30,6 +32,8 @@ def image_upload():
     url = upload["url"]
     # flask_login allows us to get the current user from the request
     new_image = Image(url=url, alt_text=alt_text)
+
+    print(new_image.id, "****************************************")
 
     db.session.add(new_image)
     db.session.flush()
