@@ -3,16 +3,16 @@ from app.models import db, Post
 
 # Adds a demo Post, you can add other Posts here if you want
 def seed_posts():
-    ape = Post(
-        imageId=1, userId=1, description='ape')
-    table = Post(
-        imageId=2, userId=2, description='table')
-    drawer = Post(
-        imageId=3, userId=3, description='drawer')
+    mountain = Post(
+        imageId=1, userId=1, description='View from Mount Washington')
+    band = Post(
+        imageId=2, userId=2, description='Greta Van Fleet')
+    family = Post(
+        imageId=3, userId=3, description='Photoshoped Family')
 
-    db.session.add(ape)
-    db.session.add(table)
-    db.session.add(drawer)
+    db.session.add(mountain)
+    db.session.add(band)
+    db.session.add(family)
 
     db.session.commit()
 
