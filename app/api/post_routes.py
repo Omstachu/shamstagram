@@ -14,8 +14,6 @@ def new_post():
 
     post_data = json.loads(request.form["new_post"])
 
-    print("post_data", post_data)
-
     post = Post(
         imageId=post_data["imageId"],
         userId=post_data["userId"],
