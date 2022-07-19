@@ -1,12 +1,24 @@
 from flask import Blueprint, request, jsonify
+import json
 from flask_login import login_required, current_user
-from app.models import User, Image, db
+from app.models import User, Post, Like, db
 
-image_routes = Blueprint('likes', __name__)
+like_routes = Blueprint('likes', __name__)
 
 
-@image_routes.route('/', methods=["GET"])
+@like_routes.route('/', methods=["POST"])
 @login_required
-def show_image():
-    images = Image.query.all()
-    return {"images": {image.id: {"url": image.url, "alt_text": image.alt_text} for image in images}}
+def add_like():
+    like_data = json.loads(request.form["new_like"])
+
+    like = Like(
+        postId = like_data["postId"],
+        userId = like_data["userId"]
+    )
+
+    db.session.add(like)
+    db.session.flush()
+    db.session.refresh(like)
+    db.session.commit()
+
+    return like
