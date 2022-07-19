@@ -13,7 +13,7 @@ class Like(db.Model):
     userId = db.Column(db.Integer, ForeignKey("users.id"), nullable=False)
 
     user = relationship("User", back_populates="likes")
-    post = relationship("Post", back_populates="likes")
+    posts = relationship("Post", back_populates="likes")
 
     def to_dict(self):
         return {

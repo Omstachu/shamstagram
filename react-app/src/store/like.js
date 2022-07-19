@@ -9,14 +9,14 @@ const addLike = (like) => ({
 
 const getLikes = (likes) => ({
     type: GET_LIKES,
-    post,
+    likes,
 });
 const deleteLike = (like) => ({
     type: DELETE_LIKE,
     payload: like,
 });
 
-export const createLike = () => async (dispatch) => {
+export const createLike = (user) => async (dispatch) => {
     let new_like = {};
 
     const res = await fetch("api/likes/", {

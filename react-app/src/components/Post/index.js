@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getOnePost } from "../../store/post";
+import { createLike } from "../../store/like";
 import PostDelete from "../PostDelete";
 import PostEditForm from "../PostEditForm";
 import "./Post.css";
@@ -14,6 +15,7 @@ function Post(propPostId) {
     const [editDisplay, setEditDisplay] = useState(false);
     const [editButtonDisplay, setEditButtonDisplay] = useState(false);
     const [deleteDisplay, setDeleteDisplay] = useState(false);
+    const [liked, setLiked] = useState(false);
     let { postId } = useParams();
 
     const dispatch = useDispatch();
@@ -47,6 +49,18 @@ function Post(propPostId) {
         }
     }, [user.id, post, postId]);
 
+    function likePost() {
+        if (liked) {
+            setLiked(false);
+        } else {
+            setLiked(true);
+        }
+    }
+
+    useEffect(() => {
+        console.log(liked);
+    }, [liked]);
+
     let editContent = null;
 
     if (editDisplay) {
@@ -79,7 +93,7 @@ function Post(propPostId) {
                     </div>
 
                     <div className="post-description">
-                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-regular fa-heart" onClick={likePost}></i>
                         {description}
                     </div>
                     {editButton}

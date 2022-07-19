@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     posts = relationship("Post", back_populates="user")
+    likes = relationship("Like", back_populates="user")
 
 
     @property
