@@ -9,11 +9,13 @@ like_routes = Blueprint('likes', __name__)
 @like_routes.route('/', methods=["POST"])
 @login_required
 def add_like():
-    like_data = json.loads(request.form["new_like"])
+    userId = request.form["userId"]
+    postId = request.form["postId"]
+    # print("^^^^^^^^^^^^^^^^", like_data)
 
     like = Like(
-        postId = like_data["postId"],
-        userId = like_data["userId"]
+        postId = postId,
+        userId = userId
     )
 
     print("like in like_routes")
@@ -23,4 +25,6 @@ def add_like():
     db.session.refresh(like)
     db.session.commit()
 
-    return like
+    likeReturn = {"postId": postId, "userId": userId}
+
+    return likeReturn

@@ -17,22 +17,26 @@ const deleteLike = (like) => ({
 });
 
 export const createLike = (user, postId) => async (dispatch) => {
+    let formData = new FormData();
     let new_like = {};
 
+    formData.append("userId", user.id);
+    formData.append("postId", postId);
     const res = await fetch("api/likes/", {
         method: "POST",
+        body: formData,
     });
 
     if (res.ok) {
-        const likeData = await res.json();
         new_like = {
             postId: postId,
             userId: user.id,
         };
+        new_like = JSON.stringify(new_like);
         dispatch(addLike(new_like));
     }
 
-    new_like = JSON.stringify(new_like);
+    // new_like = JSON.stringify(new_like);
 };
 
 const initialState = {
