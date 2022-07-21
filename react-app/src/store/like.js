@@ -43,7 +43,7 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case ADD_LIKE:
             console.log(state);
-            return state;
+            return action.payload;
         default:
             return state;
     }
