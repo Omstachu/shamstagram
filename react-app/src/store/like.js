@@ -16,7 +16,7 @@ const deleteLike = (like) => ({
     payload: like,
 });
 
-export const createLike = (user) => async (dispatch) => {
+export const createLike = (user, postId) => async (dispatch) => {
     let new_like = {};
 
     const res = await fetch("api/likes/", {
@@ -26,10 +26,25 @@ export const createLike = (user) => async (dispatch) => {
     if (res.ok) {
         const likeData = await res.json();
         new_like = {
-            postId: likeData.postId,
+            postId: postId,
             userId: user.id,
         };
+        dispatch(addLike(new_like));
     }
 
     new_like = JSON.stringify(new_like);
 };
+
+const initialState = {
+    post: {},
+};
+
+export default function reducer(state = initialState, action) {
+    switch (action.type) {
+        case ADD_LIKE:
+            console.log(state);
+            return state;
+        default:
+            return state;
+    }
+}

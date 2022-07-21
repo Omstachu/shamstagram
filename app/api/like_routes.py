@@ -16,6 +16,8 @@ def add_like():
         userId = like_data["userId"]
     )
 
+    print("like in like_routes")
+
     db.session.add(like)
     db.session.flush()
     db.session.refresh(like)
