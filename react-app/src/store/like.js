@@ -1,6 +1,5 @@
 const ADD_LIKE = "likes/ADD_LIKE";
 const GET_LIKE = "likes/GET_LIKE";
-const GET_LIKES = "likes/GET_LIKES";
 const DELETE_LIKE = "likes/DELETE_LIKE";
 
 const addLike = (like) => ({
@@ -11,11 +10,6 @@ const addLike = (like) => ({
 const getLike = (liked) => ({
     type: GET_LIKE,
     payload: liked,
-});
-
-const getLikes = (likes) => ({
-    type: GET_LIKES,
-    likes,
 });
 
 const deleteLike = (like) => ({
