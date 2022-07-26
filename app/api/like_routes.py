@@ -28,9 +28,11 @@ def add_like():
 
 @like_routes.route('/<int:userId>/<int:postId>')
 @login_required
-def get_one_like(user_id, post_id):
-    like = db.session.query(Like).filter_by(userId=user_id).filter_by(postId=post_id)
+def get_one_like(userId, postId):
+    likes = db.session.query(Like).filter_by(userId=userId).filter_by(postId=postId)
 
-    likeDict = {like.id: like.to_dict()}
+    likeDict = {"like": like.to_dict() for like in likes}
+
+    print("$$$$$$$$$$$$$$$$$$$$$", likeDict)
 
     return likeDict

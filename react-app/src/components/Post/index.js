@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getOnePost } from "../../store/post";
-import { createLike } from "../../store/like";
+import { createLike, getOneLike } from "../../store/like";
 import PostDelete from "../PostDelete";
 import PostEditForm from "../PostEditForm";
 import "./Post.css";
@@ -34,8 +34,13 @@ function Post(propPostId) {
         }
     }, [history, post, postId]);
 
-    useEffect(() => {
+    useEffect(async () => {
         dispatch(getOnePost(postId));
+        let res = await dispatch(getOneLike(user, postId));
+        console.log("$$$$$$$$$$$###################$$$$$$$$$$$$$$$", res);
+        if (res) {
+            setLiked(true);
+        }
     }, [dispatch, postId]);
 
     useEffect(() => {
@@ -54,13 +59,15 @@ function Post(propPostId) {
             setLiked(false);
         } else {
             setLiked(true);
+            dispatch(createLike(user, postId));
         }
     }
 
-    useEffect(() => {
-        console.log("liked in Post component", liked);
-        dispatch(createLike(user, postId));
-    }, [liked]);
+    let likeHeart = <i class="fa-regular fa-heart" onClick={likePost}></i>;
+
+    if (liked) {
+        likeHeart = <i class="fa-solid fa-heart" onClick={likePost}></i>;
+    }
 
     let editContent = null;
 
@@ -94,7 +101,7 @@ function Post(propPostId) {
                     </div>
 
                     <div className="post-description">
-                        <i class="fa-regular fa-heart" onClick={likePost}></i>
+                        {likeHeart}
                         {description}
                     </div>
                     {editButton}

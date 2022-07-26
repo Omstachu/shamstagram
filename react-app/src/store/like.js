@@ -45,20 +45,18 @@ export const createLike = (user, postId) => async (dispatch) => {
 };
 
 export const getOneLike = (user, postId) => async (dispatch) => {
-    let formData = new FormData();
-    let new_like = {};
-
-    formData.append("userId", user.id);
-    formData.append("postId", postId);
-
     const res = await fetch(`api/likes/${user.id}/${postId}`);
 
     if (res.ok) {
+        let like = await res.json();
+        let likelike = like.like;
+        // console.log("res.ok length is >>>>>>>>>>>", likelike.id);
         dispatch(getLike(true));
-        return "I cannot believe this is actually working rofl";
-    } else {
-        dispatch(getLike(false));
-        return "I CAN believe this is actually NOT working rofl";
+        if (likelike) {
+            return likelike.id;
+        } else {
+            return false;
+        }
     }
 };
 
@@ -69,7 +67,6 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case ADD_LIKE:
-            console.log(state);
             return action.payload;
         case GET_LIKE:
             return action.payload;
