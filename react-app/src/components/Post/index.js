@@ -57,7 +57,7 @@ function Post(propPostId) {
         }
     }
 
-    useEffect(async () => {
+    useEffect(() => {
         console.log("liked in Post component", liked);
         dispatch(createLike(user, postId));
     }, [liked]);
