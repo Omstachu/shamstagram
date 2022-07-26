@@ -50,13 +50,30 @@ export const getOneLike = (user, postId) => async (dispatch) => {
     if (res.ok) {
         let like = await res.json();
         let likelike = like.like;
-        // console.log("res.ok length is >>>>>>>>>>>", likelike.id);
+
         dispatch(getLike(true));
         if (likelike) {
             return likelike.id;
         } else {
             return false;
         }
+    }
+};
+
+export const deleteOneLike = (id) => async (dispatch) => {
+    const res = await fetch(`api/likes/${id}/delete`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            id,
+        }),
+    });
+
+    if (res.ok) {
+        let like = await res.json();
+        dispatch(deleteLike(like));
     }
 };
 
@@ -70,6 +87,12 @@ export default function reducer(state = initialState, action) {
             return action.payload;
         case GET_LIKE:
             return action.payload;
+        case DELETE_LIKE:
+            if (action.payload["Success"]) {
+                delete action.payload["Success"];
+                return state;
+            }
+            break;
         default:
             return state;
     }

@@ -33,6 +33,15 @@ def get_one_like(userId, postId):
 
     likeDict = {"like": like.to_dict() for like in likes}
 
-    print("$$$$$$$$$$$$$$$$$$$$$", likeDict)
-
     return likeDict
+
+@like_routes.route('/<int:id>/delete', methods=["POST"])
+@login_required
+def delete_one_like(id):
+    like = Like.query.get(id)
+
+    db.session.delete(like)
+    db.session.commit()
+
+
+    return {'Success': id}
