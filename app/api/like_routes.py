@@ -11,14 +11,11 @@ like_routes = Blueprint('likes', __name__)
 def add_like():
     userId = request.form["userId"]
     postId = request.form["postId"]
-    # print("^^^^^^^^^^^^^^^^", like_data)
 
     like = Like(
         postId = postId,
         userId = userId
     )
-
-    print("like in like_routes")
 
     db.session.add(like)
     db.session.flush()
@@ -28,3 +25,12 @@ def add_like():
     likeReturn = {"postId": postId, "userId": userId}
 
     return likeReturn
+
+@like_routes.route('/<int:userId>/<int:postId>')
+@login_required
+def get_one_like(user_id, post_id):
+    like = db.session.query(Like).filter_by(userId=user_id).filter_by(postId=post_id)
+
+    likeDict = {like.id: like.to_dict()}
+
+    return likeDict
