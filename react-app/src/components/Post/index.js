@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getOnePost } from "../../store/post";
+import { createLike, getOneLike, deleteOneLike } from "../../store/like";
 import PostDelete from "../PostDelete";
 import PostEditForm from "../PostEditForm";
 import "./Post.css";
@@ -14,6 +15,8 @@ function Post(propPostId) {
     const [editDisplay, setEditDisplay] = useState(false);
     const [editButtonDisplay, setEditButtonDisplay] = useState(false);
     const [deleteDisplay, setDeleteDisplay] = useState(false);
+    const [liked, setLiked] = useState(false);
+    const [likedId, setLikedId] = useState();
     let { postId } = useParams();
 
     const dispatch = useDispatch();
@@ -32,8 +35,13 @@ function Post(propPostId) {
         }
     }, [history, post, postId]);
 
-    useEffect(() => {
+    useEffect(async () => {
         dispatch(getOnePost(postId));
+        let res = await dispatch(getOneLike(user, postId));
+        if (res) {
+            setLikedId(res);
+            setLiked(true);
+        }
     }, [dispatch, postId]);
 
     useEffect(() => {
@@ -45,7 +53,23 @@ function Post(propPostId) {
             setDeleteDisplay(true);
             setEditButtonDisplay(true);
         }
-    }, [user.id, post, postId]);
+    }, [user.id, post, postId, liked]);
+
+    function likePost(e) {
+        if (liked) {
+            setLiked(false);
+            dispatch(deleteOneLike(e.target.id));
+        } else {
+            setLiked(true);
+            dispatch(createLike(user, postId));
+        }
+    }
+
+    let likeHeart = <i class="fa-regular fa-heart" onClick={likePost}></i>;
+
+    if (liked) {
+        likeHeart = <i id={likedId} class="fa-solid fa-heart" onClick={likePost}></i>;
+    }
 
     let editContent = null;
 
@@ -79,7 +103,7 @@ function Post(propPostId) {
                     </div>
 
                     <div className="post-description">
-                        <i class="fa-regular fa-heart"></i>
+                        {likeHeart}
                         {description}
                     </div>
                     {editButton}

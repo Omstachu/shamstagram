@@ -33,8 +33,6 @@ def image_upload():
     # flask_login allows us to get the current user from the request
     new_image = Image(url=url, alt_text=alt_text)
 
-    print(new_image.id, "****************************************")
-
     db.session.add(new_image)
     db.session.flush()
     db.session.refresh(new_image)
