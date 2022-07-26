@@ -42,7 +42,7 @@ function Post(propPostId) {
             setLikedId(res);
             setLiked(true);
         }
-    }, [dispatch, postId]);
+    }, [dispatch, postId, liked]);
 
     useEffect(() => {
         setDescription(post[postId]?.description);
