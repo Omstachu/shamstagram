@@ -8,9 +8,9 @@ const addLike = (like) => ({
     payload: like,
 });
 
-const getLike = () => ({
+const getLike = (liked) => ({
     type: GET_LIKE,
-    payload: true,
+    payload: liked,
 });
 
 const getLikes = (likes) => ({
@@ -54,8 +54,11 @@ export const getOneLike = (user, postId) => async (dispatch) => {
     const res = await fetch(`api/likes/${user.id}/${postId}`);
 
     if (res.ok) {
-        dispatch(getLike());
+        dispatch(getLike(true));
         return "I cannot believe this is actually working rofl";
+    } else {
+        dispatch(getLike(false));
+        return "I CAN believe this is actually NOT working rofl";
     }
 };
 
@@ -67,6 +70,8 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case ADD_LIKE:
             console.log(state);
+            return action.payload;
+        case GET_LIKE:
             return action.payload;
         default:
             return state;
