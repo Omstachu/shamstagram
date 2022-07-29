@@ -25,16 +25,17 @@
     left: 0px;
     width: 500px;
     box-sizing: border-box;
-    border-top: 7px double #cc757c;
+    /* border-top: 7px double #cc757c;
     border-left: 7px double #cc757c;
-    border-right: 7px double #cc757c;
-    border: 7px double #cc757c;
+    border-right: 7px double #cc757c; */
+    border: 1px solid #dbdbdb;
+    border-bottom: 0;
     border-radius: 7px;
-    box-shadow: 5px 5px 5px #cc757c, -5px -5px 5px #cc757c;
-    border-radius: 7px;
+    /* box-shadow: 5px 5px 5px #cc757c, -5px -5px 5px #cc757c; */
+    border-radius: 7px 7px 0px 0px;
     padding: 10px;
     font-family: "Fjalla One", sans-serif;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     margin-top: 50px;
     background-color: #ffffff;
 }
@@ -53,10 +54,11 @@
     height: 500px;
     object-fit: cover;
     box-sizing: border-box;
-    /* border: 7px double #c24150; */
-    border: 7px double #cc757c;
-    border-radius: 7px;
-    box-shadow: 5px 5px 5px #cc757c, -5px -5px 5px #cc757c;
+    border: 1px solid #dbdbdb;
+    border-top: 0;
+    border-bottom: 0;
+    /* border-radius: 7px; */
+    /* box-shadow: 5px 5px 5px #cc757c, -5px -5px 5px #cc757c; */
 }
 
 .post-description {
@@ -66,13 +68,13 @@
     width: 500px;
     box-sizing: border-box;
     background-color: #fff;
-    border: 1px groove #cc757c;
-    box-shadow: 3px 3px 3px #cc757c;
-    border-radius: 7px;
+    border: 1px solid #dbdbdb;
+    border-top: 0;
+    /* box-shadow: 3px 3px 3px #cc757c; */
+    border-radius: 0px 0px 7px 7px;
     font-family: "Fjalla One", sans-serif;
     color: #262626;
     padding-bottom: 45px;
-    top: 10px;
     word-wrap: break-word;
 }
 
