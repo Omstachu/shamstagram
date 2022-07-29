@@ -65,10 +65,10 @@ function Post(propPostId) {
         }
     }
 
-    let likeHeart = <i class="fa-regular fa-heart" onClick={likePost}></i>;
+    let likeHeart = <i class="fa-regular fa-heart fa-xl" onClick={likePost}></i>;
 
     if (liked) {
-        likeHeart = <i id={likedId} class="fa-solid fa-heart" onClick={likePost}></i>;
+        likeHeart = <i id={likedId} class="fa-solid fa-heart fa-xl" onClick={likePost}></i>;
     }
 
     let editContent = null;
@@ -102,9 +102,9 @@ function Post(propPostId) {
                         <img className="post-image" src={imageUrl} alt={altText}></img>
                     </div>
 
-                    <div className="post-description">
-                        {likeHeart}
-                        {description}
+                    <div className="post-description-container">
+                        <div className="post-description-buttons">{likeHeart}</div>
+                        <div className="post-description-text">{description}</div>
                     </div>
                     {editButton}
                     {deleteContent}

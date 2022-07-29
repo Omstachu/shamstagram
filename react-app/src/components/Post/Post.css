@@ -61,10 +61,12 @@
     /* box-shadow: 5px 5px 5px #cc757c, -5px -5px 5px #cc757c; */
 }
 
-.post-description {
+.post-description-container {
     position: relative;
-    padding: 34px;
-    padding-right: 70px;
+    display: flex;
+    flex-direction: column;
+    /* padding: 8px 34px; */
+    /* padding-right: 70px; */
     width: 500px;
     box-sizing: border-box;
     background-color: #fff;
@@ -74,8 +76,17 @@
     border-radius: 0px 0px 7px 7px;
     font-family: "Fjalla One", sans-serif;
     color: #262626;
-    padding-bottom: 45px;
+    padding-bottom: 30px;
     word-wrap: break-word;
+}
+
+.post-description-buttons {
+    padding-bottom: 10px;
+    padding: 8px 12px 12px 12px;
+}
+
+.post-description-text {
+    padding: 0px 12px;
 }
 
 .post-button {
