@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Modal from "react-modal";
 import LogoutButton from "../auth/LogoutButton";
-import image from "./images/image.png";
-import plus from "./images/plus.png";
-import profile from "./images/profile.png";
 import logo from "./sham.png";
 import "./LogoBar.css";
 

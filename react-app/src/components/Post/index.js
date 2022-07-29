@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getOnePost } from "../../store/post";
@@ -17,6 +18,8 @@ function Post(propPostId) {
     const [deleteDisplay, setDeleteDisplay] = useState(false);
     const [liked, setLiked] = useState(false);
     const [likedId, setLikedId] = useState();
+    const [modalIsOpen, setIsOpen] = useState(false);
+
     let { postId } = useParams();
 
     const dispatch = useDispatch();
@@ -65,6 +68,14 @@ function Post(propPostId) {
         }
     }
 
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
     let likeHeart = <i class="fa-regular fa-heart fa-xl" onClick={likePost}></i>;
 
     if (liked) {
@@ -97,7 +108,14 @@ function Post(propPostId) {
         <>
             <div className="post-container__container">
                 <div className="post-container">
-                    <div className="post-username">{username}</div>
+                    <div className="post-username-container">
+                        <div className="post-username-name">{username}</div>
+                        <i class="fa-solid fa-ellipsis fa-xl post-username-modal" onClick={openModal}></i>
+                        <Modal isOpen={modalIsOpen} onRequestClose={closeModal} ariaHideApp={false}>
+                            {editButton}
+                            {deleteContent}
+                        </Modal>
+                    </div>
                     <div className="post-image__container">
                         <img className="post-image" src={imageUrl} alt={altText}></img>
                     </div>
@@ -106,8 +124,7 @@ function Post(propPostId) {
                         <div className="post-description-buttons">{likeHeart}</div>
                         <div className="post-description-text">{description}</div>
                     </div>
-                    {editButton}
-                    {deleteContent}
+
                     {editContent}
                 </div>
             </div>
