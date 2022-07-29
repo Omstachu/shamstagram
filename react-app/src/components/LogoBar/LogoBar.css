@@ -1,27 +1,27 @@
 .logo-container {
-  position: relative;
-  left: -50%;
-  float: left;
-  z-index: 20;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #f0d3cd;
-  border-radius: 20px;
-  width: 100%;
-  height: 80px;
+    position: relative;
+    left: -50%;
+    float: left;
+    z-index: 20;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
+    width: 100%;
+    height: 80px;
 }
 
 .logobar-image {
-  position: relative;
-  top: 15px;
-  z-index: 20;
+    position: relative;
+    top: 15px;
+    z-index: 20;
 }
 
 .logo-container__container {
-  position: fixed;
-  left: 50%;
-  float: left;
-  z-index: 20;
-  width: 100%;
+    position: fixed;
+    left: 50%;
+    float: left;
+    z-index: 20;
+    width: 100%;
 }
