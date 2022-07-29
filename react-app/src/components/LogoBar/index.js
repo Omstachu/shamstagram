@@ -21,41 +21,36 @@ const LogoBar = () => {
 
     return (
         <div className="logo-container__container">
-            {/* <div className="logo-container">
+            <div className="logo-container">
                 <img className="logobar-image" src={logo} alt="logo" />
-            </div> */}
-            <nav className="nav_element">
-                <div className="logo-container">
-                    <img className="logobar-image" src={logo} alt="logo" />
-                </div>
-                <ul>
-                    <li className="link-container">
-                        <NavLink to="/" exact={true} activeClassName="active">
-                            <img src={image} className="navbar-image" alt="logo" />
-                        </NavLink>
-                    </li>
-                    <li className="link-container">
-                        <NavLink to="/post" exact={true} activeClassName="active">
-                            <img src={plus} className="navbar-image" alt="create" />
-                        </NavLink>
-                    </li>
-                    <li className="link-container__profile">
-                        <button onClick={openModal} className="navbar-profile">
-                            <img src={profile} className="navbar-profile__image" alt="create" />
-                        </button>
-                        <Modal
-                            isOpen={modalIsOpen}
-                            onRequestClose={closeModal}
-                            className="navbar-modal"
-                            overlayClassName="navbar-modal__overlay"
-                            parentSelector={() => document.querySelector(".navbar-profile")}
-                            ariaHideApp={false}
-                        >
-                            <LogoutButton className="navbar-modal__button" />
-                        </Modal>
-                    </li>
-                </ul>
-            </nav>
+            </div>
+            <ul className="nav_element">
+                <li className="link-container">
+                    <NavLink to="/" exact={true} activeClassName="active">
+                        <i class="fa-solid fa-house fa-xl navbar-image"></i>
+                    </NavLink>
+                </li>
+                <li className="link-container">
+                    <NavLink to="/post" exact={true} activeClassName="active">
+                        <i class="fa-regular fa-square-plus fa-xl navbar-image"></i>
+                    </NavLink>
+                </li>
+                <li className="link-container__profile">
+                    <button onClick={openModal} className="navbar-profile">
+                        <i class="fa-regular fa-user fa-xl navbar-image"></i>
+                    </button>
+                    <Modal
+                        isOpen={modalIsOpen}
+                        onRequestClose={closeModal}
+                        className="navbar-modal"
+                        overlayClassName="navbar-modal__overlay"
+                        parentSelector={() => document.querySelector(".navbar-profile")}
+                        ariaHideApp={false}
+                    >
+                        <LogoutButton className="navbar-modal__button" />
+                    </Modal>
+                </li>
+            </ul>
         </div>
     );
 };

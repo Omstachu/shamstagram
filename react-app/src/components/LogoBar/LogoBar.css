@@ -26,23 +26,22 @@
     float: left;
     z-index: 20;
     width: 100%;
+    background-color: #fff;
 }
 
 .nav_element {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
+    justify-content: space-around;
+    flex-shrink: 0;
 }
 
 nav ul {
-    /* position: fixed; */
     bottom: -1px;
     left: 1px;
     right: 1px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 100px;
     list-style-type: none;
     background-color: #c24150;
     color: white;
@@ -61,9 +60,9 @@ nav ul a:visited {
 
 .link-container {
     width: 100px;
-    height: 120px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 /* Navbar Icons */
@@ -71,20 +70,13 @@ nav ul a:visited {
 .navbar-image {
     display: flex;
     position: relative;
-    top: 0px;
-    left: 0px;
     margin: 10px;
-    height: 100px;
-    width: 100px;
     object-fit: cover;
 }
 
 .navbar-profile {
-    background-color: #c24150;
+    background-color: #fff;
     padding: 0px 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    height: 40px;
     border: none;
     color: black;
     text-align: center;
@@ -96,7 +88,7 @@ nav ul a:visited {
     display: flex;
     position: relative;
     margin: 10px;
-    height: 80px;
+    /* height: 80px; */
     width: auto;
     object-fit: cover;
     object-position: 13px;
@@ -110,7 +102,7 @@ nav ul a:visited {
     flex-direction: column;
     justify-content: space-around;
     bottom: 110px;
-    height: 60px;
+    /* height: 60px; */
     width: 100px;
     background-color: #dd9183;
     border-radius: 7px;
@@ -138,7 +130,7 @@ nav ul a:visited {
 .link-container__profile {
     position: relative;
     width: 100px;
-    height: 120px;
+    /* height: 120px; */
     display: flex;
     justify-content: center;
 }
