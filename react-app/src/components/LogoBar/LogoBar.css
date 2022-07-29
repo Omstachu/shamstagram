@@ -1,11 +1,11 @@
 .logo-container {
     position: relative;
-    left: -50%;
+    /* left: -50%; */
     float: left;
     z-index: 20;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    /* align-items: center; */
     background-color: #fff;
     border-radius: 20px;
     width: 100%;
@@ -20,8 +20,125 @@
 
 .logo-container__container {
     position: fixed;
-    left: 50%;
+    display: flex;
+    justify-content: space-around;
+    /* left: 50%; */
     float: left;
     z-index: 20;
     width: 100%;
+}
+
+.nav_element {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+nav ul {
+    /* position: fixed; */
+    bottom: -1px;
+    left: 1px;
+    right: 1px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    list-style-type: none;
+    background-color: #c24150;
+    color: white;
+    border-radius: 20px;
+    z-index: 5;
+    margin: 0px;
+}
+
+nav ul a:visited {
+    color: #f0d3cd;
+}
+
+.logout-navbar {
+    border-radius: 20px;
+}
+
+.link-container {
+    width: 100px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Navbar Icons */
+
+.navbar-image {
+    display: flex;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    margin: 10px;
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
+
+.navbar-profile {
+    background-color: #c24150;
+    padding: 0px 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    height: 40px;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.navbar-profile__image {
+    display: flex;
+    position: relative;
+    margin: 10px;
+    height: 80px;
+    width: auto;
+    object-fit: cover;
+    object-position: 13px;
+}
+
+/* modal stuff */
+
+.navbar-modal {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    bottom: 110px;
+    height: 60px;
+    width: 100px;
+    background-color: #dd9183;
+    border-radius: 7px;
+}
+
+.navbar-modal__overlay {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(246, 152, 0, 0);
+}
+
+.navbar-modal__button {
+    font-family: "BioRhyme", sans-serif;
+    border-radius: 12px;
+    size: 50%;
+    background-color: #0f2840;
+    box-shadow: 1px 1px 1px #c24150;
+    color: #c24150;
+    border-style: none;
+}
+
+.link-container__profile {
+    position: relative;
+    width: 100px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
 }

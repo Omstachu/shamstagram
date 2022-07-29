@@ -15,52 +15,52 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
-  const dispatch = useDispatch();
+    const [loaded, setLoaded] = useState(false);
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    (async () => {
-      await dispatch(authenticate());
-      setLoaded(true);
-    })();
-  }, [dispatch]);
+    useEffect(() => {
+        (async () => {
+            await dispatch(authenticate());
+            setLoaded(true);
+        })();
+    }, [dispatch]);
 
-  if (!loaded) {
-    return null;
-  }
+    if (!loaded) {
+        return null;
+    }
 
-  return (
-    <BrowserRouter>
-      <LogoBar />
-      <NavBar />
-      <Switch>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path="/post" exact={true}>
-          <PostForm />
-        </ProtectedRoute>
-        <ProtectedRoute path="/posts/:postId" exact={true}>
-          <Post />
-        </ProtectedRoute>
-        <ProtectedRoute path="/images" exact={true}>
-          <Image />
-        </ProtectedRoute>
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
-          <PostFeed />
-        </ProtectedRoute>
-      </Switch>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <LogoBar />
+            {/* <NavBar /> */}
+            <Switch>
+                <Route path="/login" exact={true}>
+                    <LoginForm />
+                </Route>
+                <Route path="/sign-up" exact={true}>
+                    <SignUpForm />
+                </Route>
+                <ProtectedRoute path="/post" exact={true}>
+                    <PostForm />
+                </ProtectedRoute>
+                <ProtectedRoute path="/posts/:postId" exact={true}>
+                    <Post />
+                </ProtectedRoute>
+                <ProtectedRoute path="/images" exact={true}>
+                    <Image />
+                </ProtectedRoute>
+                <ProtectedRoute path="/users" exact={true}>
+                    <UsersList />
+                </ProtectedRoute>
+                <ProtectedRoute path="/users/:userId" exact={true}>
+                    <User />
+                </ProtectedRoute>
+                <ProtectedRoute path="/" exact={true}>
+                    <PostFeed />
+                </ProtectedRoute>
+            </Switch>
+        </BrowserRouter>
+    );
 }
 
 export default App;
