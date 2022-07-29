@@ -1,12 +1,11 @@
 .logo-container {
     position: relative;
-    /* left: -50%; */
+    left: -10%;
     float: left;
     z-index: 20;
     display: flex;
     justify-content: space-around;
-    /* align-items: center; */
-    background-color: #fff;
+    background-color: rgb(246, 152, 0, 0);
     border-radius: 20px;
     width: 100%;
     height: 80px;
@@ -21,18 +20,20 @@
 .logo-container__container {
     position: fixed;
     display: flex;
-    justify-content: space-around;
-    /* left: 50%; */
-    float: left;
+    justify-content: space-evenly;
     z-index: 20;
     width: 100%;
     background-color: #fff;
+    border-bottom: 1px solid #dbdbdb;
 }
 
 .nav_element {
+    position: relative;
+    right: 250px;
     display: flex;
     justify-content: space-around;
     flex-shrink: 0;
+    z-index: 21;
 }
 
 nav ul {
@@ -50,8 +51,12 @@ nav ul {
     margin: 0px;
 }
 
-nav ul a:visited {
-    color: #f0d3cd;
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: #262626;
 }
 
 .logout-navbar {
@@ -76,7 +81,7 @@ nav ul a:visited {
 
 .navbar-profile {
     background-color: #fff;
-    padding: 0px 10px;
+    /* padding: 0px 10px; */
     border: none;
     color: black;
     text-align: center;
@@ -88,7 +93,6 @@ nav ul a:visited {
     display: flex;
     position: relative;
     margin: 10px;
-    /* height: 80px; */
     width: auto;
     object-fit: cover;
     object-position: 13px;
@@ -102,7 +106,6 @@ nav ul a:visited {
     flex-direction: column;
     justify-content: space-around;
     bottom: 110px;
-    /* height: 60px; */
     width: 100px;
     background-color: #dd9183;
     border-radius: 7px;
@@ -130,7 +133,6 @@ nav ul a:visited {
 .link-container__profile {
     position: relative;
     width: 100px;
-    /* height: 120px; */
     display: flex;
     justify-content: center;
 }
